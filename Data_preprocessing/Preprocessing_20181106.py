@@ -455,13 +455,11 @@ prob = model.predict(X_scaled.values.reshape((1, 31))).item()
 # predict classes
 predict_classes = model.predict_classes(X_scaled.values.reshape((1, 31))).item()
 
-# Clustering
+# Cluster는 cluster model자체가 scaler로 된 모델이라 그냥 origin 값 집어 넣어야함.
 clusterfile = '8-means(0,1,2,5,6,7).pkl'
 cluster = pickle.load(open(clusterfile, 'rb'))
-# cluster model predict
-cluster.predict(X_scaled.values.reshape((1, 31)))
 # predict cluster class
-predict_cluster_class = cluster.predict(X_scaled.values.reshape((1, 31))).item()
+predict_cluster_class = cluster.predict(origin_df).item()
 
 # Final save csv file
 Predict_df = pd.DataFrame({'prob':prob,'predict_classes':predict_classes,'predict_cluster_class':predict_cluster_class},index=[0])
