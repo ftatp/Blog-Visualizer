@@ -21,9 +21,13 @@ $.ajax({
 	error: handle_error
 });
 */
+
 function Success(data, textStatus, jqXHR){
 	//$('#loading').attr('style', 'visibility:hidden');
 	$('#resultDiv').html(data);
+	d3_data = data;
+	console.log("HIIIIIIII");
+	console.log(d3_data);
 }
 
 $(function(){
