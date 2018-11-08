@@ -43,7 +43,7 @@
 }
 .box {
   background-color:#F0F0F0;
-  height:786px;
+  height:809px;
   left:0px;
   margin-left:auto;
   margin-right:auto;
@@ -274,6 +274,12 @@
   top:0px;
   width:248px;
 }
+.box-66 {
+  height:203px;
+  left:5px;
+  top:44px;
+  width:237px;
+}
 .tab-content-item-20 {
   display:none;
   height:100%;
@@ -281,12 +287,160 @@
   position:relative;
   top:0px;
 }
+.box-67 {
+  background-color:#F3D4FF;
+  border-color:#DBDBDB;
+  border-width:1px;
+  height:328px;
+  left:9px;
+  top:2px;
+  width:247px;
+}
+.box-68 {
+  background-color:#D4DBFF;
+  height:39px;
+  left:0px;
+  margin-left:auto;
+  margin-right:auto;
+  right:0px;
+  top:0px;
+  width:247px;
+}
+.floating-image-69 {
+  background-image:url('/resource/project/User_img.png');
+  background-position:center center;
+  background-size:contain;
+  height:27px;
+  left:2px;
+  top:6px;
+  width:35px;
+}
+.box-70 {
+  height:29px;
+  left:39px;
+  top:6px;
+  width:126px;
+}
+.text-71 {
+  color:#0075CC;
+  font-size:14px;
+  height:27px;
+  left:0px;
+  text-align:left;
+  top:4px;
+  width:121px;
+}
+.box-69 {
+  height:203px;
+  left:5px;
+  top:44px;
+  width:237px;
+}
+.box-72 {
+  background-color:#F3D4FF;
+  border-color:#DBDBDB;
+  border-width:1px;
+  height:329px;
+  left:272px;
+  top:2px;
+  width:247px;
+}
+.box-73 {
+  background-color:#D4DBFF;
+  height:38px;
+  left:0px;
+  margin-left:auto;
+  margin-right:auto;
+  right:0px;
+  top:0px;
+  width:248px;
+}
+.box-74 {
+  height:203px;
+  left:5px;
+  top:44px;
+  width:237px;
+}
 .tab-content-item-36 {
   display:none;
   height:100%;
   left:0px;
   position:relative;
   top:0px;
+}
+.box-75 {
+  background-color:#F3D4FF;
+  border-color:#DBDBDB;
+  border-width:1px;
+  height:328px;
+  left:9px;
+  top:2px;
+  width:247px;
+}
+.box-76 {
+  background-color:#D4DBFF;
+  height:39px;
+  left:0px;
+  margin-left:auto;
+  margin-right:auto;
+  right:0px;
+  top:0px;
+  width:247px;
+}
+.floating-image-79 {
+  background-image:url('/resource/project/User_img.png');
+  background-position:center center;
+  background-size:contain;
+  height:27px;
+  left:2px;
+  top:6px;
+  width:35px;
+}
+.box-78 {
+  height:29px;
+  left:39px;
+  top:6px;
+  width:126px;
+}
+.text-80 {
+  color:#0075CC;
+  font-size:14px;
+  height:27px;
+  left:0px;
+  text-align:left;
+  top:4px;
+  width:121px;
+}
+.box-77 {
+  height:203px;
+  left:5px;
+  top:44px;
+  width:237px;
+}
+.box-81 {
+  background-color:#F3D4FF;
+  border-color:#DBDBDB;
+  border-width:1px;
+  height:329px;
+  left:272px;
+  top:2px;
+  width:247px;
+}
+.box-82 {
+  background-color:#D4DBFF;
+  height:38px;
+  left:0px;
+  margin-left:auto;
+  margin-right:auto;
+  right:0px;
+  top:0px;
+  width:248px;
+}
+.box-83 {
+  height:203px;
+  left:5px;
+  top:44px;
+  width:237px;
 }
 .tab-content-item-43 {
   display:none;
@@ -344,13 +498,87 @@
   height:100%;
   position:relative;
 }
+.box-84 {
+  background-color:#F3D4FF;
+  border-color:#DBDBDB;
+  border-width:1px;
+  height:328px;
+  left:9px;
+  top:2px;
+  width:247px;
+}
+.box-85 {
+  background-color:#D4DBFF;
+  height:39px;
+  left:0px;
+  margin-left:auto;
+  margin-right:auto;
+  right:0px;
+  top:0px;
+  width:247px;
+}
+.floating-image-87 {
+  background-image:url('/resource/project/User_img.png');
+  background-position:center center;
+  background-size:contain;
+  height:27px;
+  left:2px;
+  top:6px;
+  width:35px;
+}
+.box-88 {
+  height:29px;
+  left:39px;
+  top:6px;
+  width:126px;
+}
+.text-89 {
+  color:#0075CC;
+  font-size:14px;
+  height:27px;
+  left:0px;
+  text-align:left;
+  top:4px;
+  width:121px;
+}
+.box-86 {
+  height:203px;
+  left:5px;
+  top:44px;
+  width:237px;
+}
+.box-90 {
+  background-color:#F3D4FF;
+  border-color:#DBDBDB;
+  border-width:1px;
+  height:329px;
+  left:272px;
+  top:2px;
+  width:247px;
+}
+.box-91 {
+  background-color:#D4DBFF;
+  height:38px;
+  left:0px;
+  margin-left:auto;
+  margin-right:auto;
+  right:0px;
+  top:0px;
+  width:248px;
+}
+.box-92 {
+  height:203px;
+  left:5px;
+  top:44px;
+  width:237px;
+}
 .box-58 {
   background-color:#FFFFFF;
   border-color:#DBDBDB;
   border-width:1px;
   height:155px;
   left:7px;
-  top:419px;
+  top:429px;
   width:511px;
 }
 .text-59 {
@@ -395,7 +623,7 @@
   border-width:1px;
   height:185px;
   left:7px;
-  top:581px;
+  top:600px;
   width:511px;
 }
 .text-64 {
@@ -405,13 +633,6 @@
   top:8px;
   width:494px;
 }
-.box-65 {
-  background-color:#DBDBDB;
-  height:2px;
-  left:8px;
-  top:33px;
-  width:491px;
-}
 .floating-image-65 {
   background-image:url('/resource/project/bar_graph.png');
   background-position:center center;
@@ -420,6 +641,13 @@
   left:312px;
   top:51px;
   width:157px;
+}
+.box-93 {
+  background-color:#DBDBDB;
+  height:2px;
+  left:8px;
+  top:33px;
+  width:491px;
 }
 .box-49 {
   border-radius:0px;
