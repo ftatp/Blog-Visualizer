@@ -208,10 +208,8 @@ class textclass:
         return HTML_preprocessing
 
     def sentimental_analysis(text):
-        #print(text)
         pos_word_list = []
         neg_word_list = []
-        neutrial_list = []
         
         pos_ratio = 0.000000001
         neg_ratio = 0.000000001
@@ -222,24 +220,16 @@ class textclass:
         if text == '':
             sentiment_dict = {'pos_ratio': pos_ratio, 'neg_ratio': neg_ratio, 'subjectivity': subjectivity,
                               'polarity': polarity, 'senti_diffs_per_ref': senti_diffs_per_ref}
-            return sentiment_dict, pos_word_list, neg_word_list, neutrial_list
+            return sentiment_dict, pos_word_list, neg_word_list
         else:
             pos = 0
             neg = 0
-            neut = 0
             text = text.split(' ')
             n = len(text)
             for i in text:
                 i = remove_odd(i)
-                #print(i)
-                try:
-                    print(pre)
-                    pre = kkma.pos(i)
-                except:
-                    print('adasdasdsad')
-                
+                pre = kkma.pos(i)
                 test = ';'.join(['/'.join(i) for i in pre])
-                print(test)
                 if test in word_list:
                     if label[word_list.index(test)] == 'POS':
                         pos += 1
@@ -247,8 +237,6 @@ class textclass:
                     elif label[word_list.index(test)] == 'NEG':
                         neg += 1
                         neg_word_list.append(test)
-                    elif label[word_list.index(test)] == 'NEUT':
-                        neut += 1
             try:
                 pos_ratio = pos / n
             except:
@@ -272,8 +260,7 @@ class textclass:
 
             sentiment_dict = {'pos_ratio': pos_ratio, 'neg_ratio': neg_ratio, 'subjectivity': subjectivity,
                               'polarity': polarity, 'senti_diffs_per_ref': senti_diffs_per_ref}
-            return sentiment_dict, pos_word_list, neg_word_list, neutrial_list
-
+            return sentiment_dict, pos_word_list, neg_word_list
 
     def check_First_second(Text):
         first_person = ['나/NP', '저/NP', '내/NP', '제/NP', '저희/NP', '우리/NP']
@@ -306,7 +293,7 @@ class otherclass:
         return effort_dict
 
     def Tag_count(url):
-        driver = webdriver.Chrome('./chromedriver')
+        driver = webdriver.Chrome('static/chromedriver.exe')
         driver.get(url)
         driver.implicitly_wait(10)
         tag_count = len(re.sub('\n','',driver.find_element_by_class_name('wrap_tag').text).strip().split('#')[1:])
@@ -380,6 +367,8 @@ class chorme_class:
         for year in years:
             if len(year.text) > 4:
                 blog_opening_date = year.text
+            else:
+                blog_opening_date = "no_date"
         driver.close()
         
         user_information_dict = {'Blog_name':Blog_name, 'Blog_nickname':Blog_nickname, 'Count_neighbors':Count_neighbors, 'Count_visitors':Count_visitors, 'blog_opening_date':blog_opening_date}
@@ -390,13 +379,14 @@ class chorme_class:
 # # Test
 
 # In[9]:
+def get_naver_post_all_data():#User_id, Post_id, Category):
+    User_id = 'newpark314'
+    Post_id = '221387605004'
+    Category = '맛집'
 
-# User_id = 'newpark314'
-# Post_id = '221387605004'
-# Category = '맛집'
 
+    # In[10]:
 
-def get_naver_post_all_data(User_id, Post_id, Category):
     url = "http://blog.naver.com/PostView.nhn?blogId=" + User_id + "&logNo=" + Post_id + "&redirect=Dlog&widgetTypeCall=true"
     mobile_url = "http://m.blog.naver.com/PostView.nhn?blogId="+ User_id
     opening_url = 'http://blog.naver.com/profile/intro.nhn?blogId='+ User_id
@@ -412,19 +402,18 @@ def get_naver_post_all_data(User_id, Post_id, Category):
     p_img_tag = structure['structure_p_img_tag']
     HTML_preprocessing = textclass.HTML_preprocessing(p_img_tag)
     text = HTML_preprocessing['Text']
+
+
     # variables
     Text_len = len(text)
     Count_Space_mistake = HTML_preprocessing['Count_space_mistake']
     Question_count = text.count('?')
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     sentiment_pre = textclass.sentimental_analysis(text)
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     sentiment = sentiment_pre[0]
     pos_word = sentiment_pre[1]
     neg_word = sentiment_pre[2]
-    neut_word = sentiment_pre[3]
-    
     first_second = textclass.check_First_second(text)
+
 
     # In[12]:
 
@@ -443,6 +432,7 @@ def get_naver_post_all_data(User_id, Post_id, Category):
     Img_count = refined_structure.count('img')
     Effort = otherclass.effort_check(Category,Text_len,Img_count)
     Tag_count = otherclass.Tag_count(url)['tag_count']
+
 
     # # 사용자 정보
 
@@ -465,8 +455,6 @@ def get_naver_post_all_data(User_id, Post_id, Category):
 
     # tfidf, keras model, cluster model
     #Load it later
-
-
     from sklearn.feature_extraction.text import TfidfTransformer
     from sklearn.feature_extraction.text import TfidfVectorizer
     transformer = TfidfTransformer()
@@ -552,6 +540,7 @@ def get_naver_post_all_data(User_id, Post_id, Category):
 
     # # Clustering
 
+    # In[21]:
 
     # Cluster는 cluster model자체가 scaler로 된 모델이라 그냥 origin 값 집어 넣어야함.
     clusterfile = 'static/8-means(0,1,2,5,6,7).pkl'
@@ -562,9 +551,21 @@ def get_naver_post_all_data(User_id, Post_id, Category):
 
     # # Final save csv_file
 
+    # In[22]:
+
+    Predict_df = pd.DataFrame({'prob':prob,'predict_classes':predict_classes,'predict_cluster_class':predict_cluster_class},index=[0])
+    user_df = pd.DataFrame({'Blog_name':Blog_name,'Blog_nickname':Blog_nickname,'Count_neighbors':Count_neighbors,'Count_visitors':Count_visitors,'blog_opening_date':blog_opening_date},index=[0])
+
     Predict_dict = {'prob':prob,'predict_classes':predict_classes,'predict_cluster_class':predict_cluster_class}
     user_dict = {'Blog_name':Blog_name,'Blog_nickname':Blog_nickname,'Count_neighbors':Count_neighbors,'Count_visitors':Count_visitors,'blog_opening_date':blog_opening_date}
+    # In[23]:
 
+    value = pd.concat([X_scaled,Predict_df],axis=1)
+
+
+    # In[24]:
+
+    #value.to_csv('static/test_csv.csv')
 
     refined_X_scaled = X_scaled.T.to_dict()[0]
 
@@ -615,9 +616,8 @@ def get_naver_post_all_data(User_id, Post_id, Category):
         'words': {
             'positive': pos_word,
             'negative': neg_word,
-            'neutrial': neut_word
+            #'neutrial': neut_word
         }
     } 
 
     return all_data
-
