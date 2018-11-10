@@ -7,7 +7,9 @@ import pandas as pd
 from konlpy.tag import Kkma
 import numpy as np
 import pickle
-
+from keras.models import load_model
+import jpype
+import tensorflow as tf
 kkma = Kkma()
 sentiment = pd.read_csv('polarity.csv')
 word_list = sentiment['ngram'].tolist()
@@ -86,6 +88,7 @@ def remove_odd(x):
     return x
 
 def tfidf_vectorizer(Text):
+    v_load = pickle.load(open("static/[Structure_tag]TFIDF_features_100.pkl", "rb"))
     try:
         return v_load.transform([Text]).toarray().flatten()
     except:
@@ -211,6 +214,7 @@ class textclass:
             n = len(text)
             for i in text:
                 i = remove_odd(i)
+                jpype.attachThreadToJVM()
                 pre = kkma.pos(i)
                 test = ';'.join(['/'.join(i) for i in pre])
                 if test in word_list:
@@ -409,13 +413,6 @@ blog_opening_date = user_information['blog_opening_date']
 # tfidf
 
 # tfidf, keras model, cluster model
-#Load it later
-from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.feature_extraction.text import TfidfVectorizer
-transformer = TfidfTransformer()
-loaded_vec = TfidfVectorizer(decode_error="replace",vocabulary=pickle.load(open("[Structure_tag]TFIDF_features_100.pkl", "rb")))
-transformer = TfidfTransformer()
-v_load = pickle.load(open("[Structure_tag]TFIDF_features_100.pkl", "rb"))
 
 # variable
 Structure_13 = tfidf_vectorizer(refined_structure)
@@ -439,7 +436,7 @@ origin_df.columns = ['Question_count','First_ratio','Second_ratio','Tag_count','
 
 # keras
 ## Standard scaler model load
-import pickle
+
 scalerfile = 'scaler.pkl'
 scaler = pickle.load(open(scalerfile, 'rb'))
 # transform data
@@ -447,13 +444,13 @@ origin_df = origin_df.fillna(0)
 X_scaled = pd.DataFrame(scaler.transform(origin_df),columns = origin_df.columns)
 
 # keras model load
-from keras.models import load_model
-model = load_model('keras_model.h5')
 
-# data type reshape & predict probability
-prob = model.predict(X_scaled.values.reshape((1, 31))).item()
-# predict classes
-predict_classes = model.predict_classes(X_scaled.values.reshape((1, 31))).item()
+graph = tf.get_default_graph()
+with graph.as_default():
+	model = load_model('static/keras_model.h5')
+	# data type reshape & predict probability
+	prob = model.predict(X_scaled.values.reshape((1, 31))).item()
+	predict_classes = model.predict_classes(X_scaled.values.reshape((1, 31))).item()
 
 # Cluster는 cluster model자체가 scaler로 된 모델이라 그냥 origin 값 집어 넣어야함.
 clusterfile = '8-means(0,1,2,5,6,7).pkl'
