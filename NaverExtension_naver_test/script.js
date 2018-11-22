@@ -26,8 +26,13 @@ function Success(data, textStatus, jqXHR){
 	//$('#loading').attr('style', 'visibility:hidden');
 	$('#resultDiv').html(data);
 	d3_data = data;
-	console.log("HIIIIIIII");
+	console.log("HI");
 	console.log(d3_data);
+	console.log(data.post.Predict.predict_classes)
+	if(data["post"].Predict["predict_classes"] == 1){
+		
+	}
+
 }
 
 $(function(){
@@ -45,19 +50,18 @@ $(function(){
 		if (category == "선택"){
 			window.alert("분야를 선택해주세요");
 		}
-
-
-		$.ajax({
-			type: "POST",
-			url: "http://127.0.0.1:8000/analysis/",
-			data: {
-				'category': category,
-				'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
-			},
-			
-		success: Success,
-		dataType: 'html'
-		});
+		else{
+			$.ajax({
+				type: "POST",
+				url: "http://127.0.0.1:8000/analysis/",
+				data: {
+					'category': category,
+					'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
+				},	
+				success: Success,
+				dataType: 'html'
+			});
+		}
 //
 //		var xhr = new XMLHttpRequest();
 //		xhr.onreadystatechange = handleStateChange; // Implemented elsewhere.

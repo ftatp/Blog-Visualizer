@@ -4,30 +4,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 import os
 import pandas as pd
-
-#from analysis import Main_data_preprocessing_20181106 as preprocesser
-
-from konlpy.tag import Kkma
-
+import json
 
 from analysis import Preprocessing
-
-# coding: utf-8
-
-# In[29]:
-
-from bs4 import BeautifulSoup 
-import re
-import requests
-from selenium import webdriver
-from pykospacing import spacing
-import pandas as pd
-from konlpy.tag import Kkma
-import numpy as np
-import pickle
-
-
-
 
 @csrf_exempt
 def index(request):
@@ -46,10 +25,8 @@ def index(request):
 			'post': post_data,
 			'clusters': cluster_dict
 		}
-		print("hdfgx")
-		print(data_dict)
-
-		#return HttpResponse("hello!! " + request.POST['search_list'])
+		print(json.dumps(data_dict, indent=4, sort_keys=True))
+	
 		return JsonResponse(data_dict)
 
 	return HttpResponse("Hello, world. You're at the index.")

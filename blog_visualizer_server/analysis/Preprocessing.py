@@ -350,15 +350,18 @@ class chorme_class:
         driver.find_element_by_id('category2').click()
         years = driver.find_elements_by_css_selector(
             '#post-area > div:nth-child(4) > table:nth-child(2) > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td:nth-child(2)')
-        blog_opening_data = "no_date"
+        blog_opening_date = "NO_DATA"
         for year in years:
             if len(year.text) > 4:
                 blog_opening_date = year.text
         driver.close()
 
-        user_information_dict = {'Blog_name': Blog_name, 'Blog_nickname': Blog_nickname,
-                                 'Count_neighbors': Count_neighbors, 'Count_visitors': Count_visitors,
-                                 'blog_opening_date': blog_opening_date}
+        user_information_dict = {
+            'Blog_name': Blog_name, 
+            'Blog_nickname': Blog_nickname,
+            'Count_neighbors': Count_neighbors,
+            'Count_visitors': Count_visitors,
+            'blog_opening_date': blog_opening_date}
 
         return user_information_dict
 
@@ -531,13 +534,4 @@ def get_naver_post_all_data():
 	} 
 
 	return all_data
-
-
-
-
-
-
-
-
-
 
