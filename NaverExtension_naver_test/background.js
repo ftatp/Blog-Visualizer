@@ -1,18 +1,31 @@
-console.log("Background!!")
-window.alert("!!!!")	
 
 var category = 0;
 var url;
+
 whale.tabs.onUpdated.addListener(function(tabid, changeinfo, tab) {
 	if (tab.url != url) {
 		url = tab.url;
+
 		window.alert(url);
 
-		if(url.match("blog.")){
-			ajax_post();
-		}
+		// whale.tabs.executeScript(null,{
+		//   code:"var s = document.createElement('div');var newContent = document.createTextNode('환영합니다!');s.appendChild(newContent);(document.body).appendChild(s);"
+		// });
+		var s = document.createElement('script');
+		var c = document.createElement('style');
+		s.src = whale.extension.getURL('test.js');
+		c.src = whale.extension.getURL('test.css');
+		// s.onload = function(){
+		//   this.remove();
+		// };
+		(document.body).appendChild(c);
+		(document.body).appendChild(s);
 	}
 });
+
+if(url.match("blog.")){
+	ajax_post();
+}
 
 function ajax_post(){
 	$.ajax({
@@ -21,15 +34,12 @@ function ajax_post(){
 		data: {
 			'category': category,
 			'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
-		},	
+		},
 		success: Success,
 		dataType: 'json'
 	});
 
 }
-
-
-
 function Success(data, textStatus, jqXHR){
 	//$('#loading').attr('style', 'visibility:hidden');
 	d3_data = data;
@@ -55,7 +65,7 @@ function Success(data, textStatus, jqXHR){
 		var currTab = tabs[0];
 		if (currTab) { // Sanity check
 		     /* do stuff */
-			
+
 			prob = data.post.Predict["prob"];
 			if(prob >= 0.7){
 				$.notify("신뢰도 높음", "success");
@@ -67,10 +77,8 @@ function Success(data, textStatus, jqXHR){
 				$.notify("위험", "error");
 			}
 
-		
+
 		}
 	});
 
-}
-
-
+};

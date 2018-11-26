@@ -10,6 +10,8 @@ import pickle
 from keras.models import load_model
 import jpype
 import tensorflow as tf
+prob = 1
+predict_classes = 1
 kkma = Kkma()
 sentiment = pd.read_csv('static/polarity.csv')
 word_list = sentiment['ngram'].tolist()
@@ -321,49 +323,49 @@ class htmlclass:
         return Sticker_count
 
 
-class chorme_class:
-    def user_information(mobile_url, opening_url):
-        driver = webdriver.Chrome('static/chromedriver')
-
-        driver.get(mobile_url)
-        driver.implicitly_wait(3)
-
-        # 존재하지 않는 게시물 클릭
-        driver.find_element_by_class_name("btn_area").click()
-        driver.implicitly_wait(3)
-
-        # Blog_name, Blog_nickname, Blog_mobile_profile_img, Blog_info_text
-        Blog_name = driver.find_element_by_css_selector(
-            '#rego_cover > div.cover_cont > div.tit_area > h2 > a > span').text
-        Blog_nickname = driver.find_element_by_class_name("user_name").text
-
-        # Count_neighbors
-        neighbors_string = re.sub(",", "", driver.find_element_by_class_name("count_buddy").text)
-        Count_neighbors = int(re.findall('\d+', neighbors_string)[0])
-
-        # Count_visitors
-        visitor_stirng = driver.find_elements_by_class_name('count')[0].text
-        Count_visitors = re.sub(",", "", visitor_stirng.split("전체")[1]).strip()
-        # Opening URL
-        driver.get(opening_url)
-        driver.implicitly_wait(3)
-        driver.find_element_by_id('category2').click()
-        years = driver.find_elements_by_css_selector(
-            '#post-area > div:nth-child(4) > table:nth-child(2) > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td:nth-child(2)')
-        blog_opening_date = "NO_DATA"
-        for year in years:
-            if len(year.text) > 4:
-                blog_opening_date = year.text
-        driver.close()
-
-        user_information_dict = {
-            'Blog_name': Blog_name, 
-            'Blog_nickname': Blog_nickname,
-            'Count_neighbors': Count_neighbors,
-            'Count_visitors': Count_visitors,
-            'blog_opening_date': blog_opening_date}
-
-        return user_information_dict
+# class chorme_class:
+#     def user_information(mobile_url, opening_url):
+#         driver = webdriver.Chrome('./static/chromedriver')
+#
+#         driver.get(mobile_url)
+#         driver.implicitly_wait(3)
+#
+#         # 존재하지 않는 게시물 클릭
+#         driver.find_element_by_class_name("btn_area").click()
+#         driver.implicitly_wait(3)
+#
+#         # Blog_name, Blog_nickname, Blog_mobile_profile_img, Blog_info_text
+#         Blog_name = driver.find_element_by_css_selector(
+#             '#rego_cover > div.cover_cont > div.tit_area > h2 > a > span').text
+#         Blog_nickname = driver.find_element_by_class_name("user_name").text
+#
+#         # Count_neighbors
+#         neighbors_string = re.sub(",", "", driver.find_element_by_class_name("count_buddy").text)
+#         Count_neighbors = int(re.findall('\d+', neighbors_string)[0])
+#
+#         # Count_visitors
+#         visitor_stirng = driver.find_elements_by_class_name('count')[0].text
+#         Count_visitors = re.sub(",", "", visitor_stirng.split("전체")[1]).strip()
+#         # Opening URL
+#         driver.get(opening_url)
+#         driver.implicitly_wait(3)
+#         driver.find_element_by_id('category2').click()
+#         years = driver.find_elements_by_css_selector(
+#             '#post-area > div:nth-child(4) > table:nth-child(2) > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td:nth-child(2)')
+#         blog_opening_date = "NO_DATA"
+#         for year in years:
+#             if len(year.text) > 4:
+#                 blog_opening_date = year.text
+#         driver.close()
+#
+#         user_information_dict = {
+#             'Blog_name': Blog_name,
+#             'Blog_nickname': Blog_nickname,
+#             'Count_neighbors': Count_neighbors,
+#             'Count_visitors': Count_visitors,
+#             'blog_opening_date': blog_opening_date}
+#
+#         return user_information_dict
 
 # Test
 User_id = 'newpark314'
@@ -372,166 +374,167 @@ Category = '맛집'
 
 def get_naver_post_all_data():
 # start
-	url = "http://blog.naver.com/PostView.nhn?blogId=" + User_id + "&logNo=" + Post_id + "&redirect=Dlog&widgetTypeCall=true"
-	mobile_url = "http://m.blog.naver.com/PostView.nhn?blogId="+ User_id
-	opening_url = 'http://blog.naver.com/profile/intro.nhn?blogId='+ User_id
+    url = "http://blog.naver.com/PostView.nhn?blogId=" + User_id + "&logNo=" + Post_id + "&redirect=Dlog&widgetTypeCall=true"
+    mobile_url = "http://m.blog.naver.com/PostView.nhn?blogId="+ User_id
+    opening_url = 'http://blog.naver.com/profile/intro.nhn?blogId='+ User_id
 
 # Text_len,Question_count,Sentiment(pos_ratio,neg_ratio,subjectivity,polarity,sentiment_diff_ref)
 # Count_Space_mistake, First_ratio, Second_ratio
 
-	structure = textclass.Extract_structure_and_tag(User_id,Post_id)
-	all_tag = structure['structure']
-	p_img_tag = structure['structure_p_img_tag']
-	HTML_preprocessing = textclass.HTML_preprocessing(p_img_tag)
-	text = HTML_preprocessing['Text']
+    structure = textclass.Extract_structure_and_tag(User_id,Post_id)
+    all_tag = structure['structure']
+    p_img_tag = structure['structure_p_img_tag']
+    HTML_preprocessing = textclass.HTML_preprocessing(p_img_tag)
+    text = HTML_preprocessing['Text']
 
 
 # variables
-	Text_len = len(text)
-	Count_Space_mistake = HTML_preprocessing['Count_space_mistake']
-	Question_count = text.count('?')
-	sentiment_pre = textclass.sentimental_analysis(text)
-	sentiment = sentiment_pre[0]
-	pos_word = sentiment_pre[1]
-	neg_word = sentiment_pre[2]
-	neut_word = sentiment_pre[3]
-	first_second = textclass.check_First_second(text)
+    Text_len = len(text)
+    Count_Space_mistake = HTML_preprocessing['Count_space_mistake']
+    Question_count = text.count('?')
+    sentiment_pre = textclass.sentimental_analysis(text)
+    sentiment = sentiment_pre[0]
+    pos_word = sentiment_pre[1]
+    neg_word = sentiment_pre[2]
+    neut_word = sentiment_pre[3]
+    first_second = textclass.check_First_second(text)
 
 # Alignment(Left,Center,Right,Justify), Sticker_count
 # variables
-	Alignment = htmlclass.Extract_Alignment(all_tag)
-	Sticker_count = htmlclass.Extract_Sticker_count(all_tag)
+    Alignment = htmlclass.Extract_Alignment(all_tag)
+    Sticker_count = htmlclass.Extract_Sticker_count(all_tag)
 
 # Effort(effort_ratio,effort_img_ratio), Tag_count
-	refined_structure = HTML_preprocessing['refined_structure']
+    refined_structure = HTML_preprocessing['refined_structure']
 
 # variables
-	Img_count = refined_structure.count('img')
-	Effort = otherclass.effort_check(Category,Text_len,Img_count)
-	Tag_count = otherclass.Tag_count(url)['tag_count']
+    Img_count = refined_structure.count('img')
+    Effort = otherclass.effort_check(Category,Text_len,Img_count)
+    Tag_count = otherclass.Tag_count(url)['tag_count']
 
 # user_information
 # 사용자 정보
-	user_information = chorme_class.user_information(mobile_url,opening_url)
+#	user_information = chorme_class.user_information(mobile_url,opening_url)
 
 ## user variables
-	Blog_name = user_information['Blog_name']
-	Blog_nickname = user_information['Blog_nickname']
-	Count_neighbors = user_information['Count_neighbors']
-	Count_visitors = user_information['Count_visitors']
-	blog_opening_date = user_information['blog_opening_date']
+#	Blog_name = user_information['Blog_name']
+#	Blog_nickname = user_information['Blog_nickname']
+#	Count_neighbors = user_information['Count_neighbors']
+#	Count_visitors = user_information['Count_visitors']
+#	blog_opening_date = user_information['blog_opening_date']
 
 # tfidf
 
 # tfidf, keras model, cluster model
 
 # variable
-	Structure_13 = tfidf_vectorizer(refined_structure)
+    Structure_13 = tfidf_vectorizer(refined_structure)
 
 # Data organization
 
-	list_1 = [Question_count,first_second['First_ratio'],first_second['Second_ratio'],Tag_count,
-	sentiment['pos_ratio'],sentiment['neg_ratio'],sentiment['subjectivity'],sentiment['polarity'],sentiment['senti_diffs_per_ref'],
-	Sticker_count,Text_len,Count_Space_mistake,Effort['effort_ratio'],Effort['effort_img_ratio'],
-	Alignment[0],Alignment[1],Alignment[2],Alignment[3]]
-	list_2 = Structure_13.tolist()
+    list_1 = [Question_count,first_second['First_ratio'],first_second['Second_ratio'],Tag_count,
+    sentiment['pos_ratio'],sentiment['neg_ratio'],sentiment['subjectivity'],sentiment['polarity'],sentiment['senti_diffs_per_ref'],
+    Sticker_count,Text_len,Count_Space_mistake,Effort['effort_ratio'],Effort['effort_img_ratio'],
+    Alignment[0],Alignment[1],Alignment[2],Alignment[3]]
+    list_2 = Structure_13.tolist()
 
-	total_dataset = list_1 + list_2
-	origin_df = pd.DataFrame(total_dataset).T
-	origin_df.columns = ['Question_count','First_ratio','Second_ratio','Tag_count','pos_ratio',
-	 'neg_ratio','subjectivity','polarity','senti_diffs_per_ref','Sticker_count','Text_len','Count_space_mistake',
-	   'effort_ratio','effort_img_ratio','Left','Center','Right','Justify',
-	   'img img img img img','img img img img text','img img img text img','img img text img img','img img text img text',
-	 'img text img img img','img text img img text','img text img text img','text img img img img','text img img img text',
-	 'text img img text img','text img text img img','text img text img text']
+    total_dataset = list_1 + list_2
+    origin_df = pd.DataFrame(total_dataset).T
+    origin_df.columns = ['Question_count','First_ratio','Second_ratio','Tag_count','pos_ratio',
+     'neg_ratio','subjectivity','polarity','senti_diffs_per_ref','Sticker_count','Text_len','Count_space_mistake',
+       'effort_ratio','effort_img_ratio','Left','Center','Right','Justify',
+       'img img img img img','img img img img text','img img img text img','img img text img img','img img text img text',
+     'img text img img img','img text img img text','img text img text img','text img img img img','text img img img text',
+     'text img img text img','text img text img img','text img text img text']
 
 # keras
 ## Standard scaler model load
 
-	scalerfile = 'static/scaler.pkl'
-	scaler = pickle.load(open(scalerfile, 'rb'))
+    scalerfile = 'static/scaler.pkl'
+    scaler = pickle.load(open(scalerfile, 'rb'))
 # transform data
-	origin_df = origin_df.fillna(0)
-	X_scaled = pd.DataFrame(scaler.transform(origin_df),columns = origin_df.columns)
+    origin_df = origin_df.fillna(0)
+    X_scaled = pd.DataFrame(scaler.transform(origin_df),columns = origin_df.columns)
 
 # keras model load
 
-	graph = tf.get_default_graph()
-	with graph.as_default():
-		model = load_model('static/keras_model.h5')
-		# data type reshape & predict probability
-		prob = model.predict(X_scaled.values.reshape((1, 31))).item()
-		predict_classes = model.predict_classes(X_scaled.values.reshape((1, 31))).item()
+    graph = tf.get_default_graph()
+    with graph.as_default():
+        # data type reshape & predict probability
+        prob = model.predict(X_scaled.values.reshape((1, 31))).item()
+        predict_classes = model.predict_classes(X_scaled.values.reshape((1, 31))).item()
 
+    test = load_model(X_scaled)
+    prob = test['prob']
+    predict_classes = test['predict_classes']
 # Cluster는 cluster model자체가 scaler로 된 모델이라 그냥 origin 값 집어 넣어야함.
-	clusterfile = 'static/8-means(0,1,2,5,6,7).pkl'
-	cluster = pickle.load(open(clusterfile, 'rb'))
+    clusterfile = 'static/8-means(0,1,2,5,6,7).pkl'
+    cluster = pickle.load(open(clusterfile, 'rb'))
 # predict cluster class
-	predict_cluster_class = cluster.predict(origin_df).item()
+    predict_cluster_class = cluster.predict(origin_df).item()
 
 # Final save csv file
-	Predict_df = pd.DataFrame({'prob':prob,'predict_classes':predict_classes,'predict_cluster_class':predict_cluster_class},index=[0])
+    Predict_df = pd.DataFrame({'prob':prob,'predict_classes':predict_classes,'predict_cluster_class':predict_cluster_class},index=[0])
 #user_df = pd.DataFrame({'Blog_name':Blog_name,'Blog_nickname':Blog_nickname,'Count_neighbors':Count_neighbors,'Count_visitors':Count_visitors,'blog_opening_date':blog_opening_date},index=[0])
-	value = pd.concat([X_scaled,Predict_df],axis=1)
+    value = pd.concat([X_scaled,Predict_df],axis=1)
 #pos_word
 #	neg_word
 
-	Predict_dict = {'prob':prob,'predict_classes':predict_classes,'predict_cluster_class':predict_cluster_class}
-	user_dict = {'Blog_name':Blog_name,'Blog_nickname':Blog_nickname,'Count_neighbors':Count_neighbors,'Count_visitors':Count_visitors,'blog_opening_date':blog_opening_date}
-	#
+    Predict_dict = {'prob':prob,'predict_classes':predict_classes,'predict_cluster_class':predict_cluster_class}
+    #user_dict = {'Blog_name':Blog_name,'Blog_nickname':Blog_nickname,'Count_neighbors':Count_neighbors,'Count_visitors':Count_visitors,'blog_opening_date':blog_opening_date}
+    #
 
-	refined_X_scaled = X_scaled.T.to_dict()[0]
+    refined_X_scaled = X_scaled.T.to_dict()[0]
 
-	Structure = {
-		'img img img img img': refined_X_scaled['img img img img img'],
-		'img img img img text':refined_X_scaled['img img img img text'],
-		'img img img text img':refined_X_scaled['img img img text img'],
-		'img img text img img' :refined_X_scaled['img img text img img'],
-		'img img text img text':refined_X_scaled['img img text img text'],
-		'img text img img img':refined_X_scaled['img text img img img'],
-		'img text img img text':refined_X_scaled['img text img img text'],
-		'img text img text img':refined_X_scaled['img text img text img'],
-		'text img img img img':refined_X_scaled['text img img img img'],
-		'text img img img text':refined_X_scaled['text img img img text'],
-		'text img img text img':refined_X_scaled['text img img text img'],
-		'text img text img img':refined_X_scaled['text img text img img'],
-		'text img text img text':refined_X_scaled['text img text img text']}
+    Structure = {
+        'img img img img img': refined_X_scaled['img img img img img'],
+        'img img img img text':refined_X_scaled['img img img img text'],
+        'img img img text img':refined_X_scaled['img img img text img'],
+        'img img text img img' :refined_X_scaled['img img text img img'],
+        'img img text img text':refined_X_scaled['img img text img text'],
+        'img text img img img':refined_X_scaled['img text img img img'],
+        'img text img img text':refined_X_scaled['img text img img text'],
+        'img text img text img':refined_X_scaled['img text img text img'],
+        'text img img img img':refined_X_scaled['text img img img img'],
+        'text img img img text':refined_X_scaled['text img img img text'],
+        'text img img text img':refined_X_scaled['text img img text img'],
+        'text img text img img':refined_X_scaled['text img text img img'],
+        'text img text img text':refined_X_scaled['text img text img text']}
 
-	Sentiment = {
-		'pos_ratio': refined_X_scaled['pos_ratio'],
-		'neg_ratio':refined_X_scaled['neg_ratio'],
-		'subjectivity':refined_X_scaled['subjectivity'],
-		'polarity' :refined_X_scaled['polarity'],
-		'senti_diffs_per_ref':refined_X_scaled['senti_diffs_per_ref']
-	}
+    Sentiment = {
+        'pos_ratio': refined_X_scaled['pos_ratio'],
+        'neg_ratio':refined_X_scaled['neg_ratio'],
+        'subjectivity':refined_X_scaled['subjectivity'],
+        'polarity' :refined_X_scaled['polarity'],
+        'senti_diffs_per_ref':refined_X_scaled['senti_diffs_per_ref']
+    }
 
-	Other = {
-		'Question_count':refined_X_scaled['Question_count'],
-		'First_ratio': refined_X_scaled['First_ratio'],
-		'Second_ratio':refined_X_scaled['Second_ratio'],
-		'Tag_count':refined_X_scaled['Tag_count'],
-		'Sticker_count':refined_X_scaled['Sticker_count'],
-		'Text_len':refined_X_scaled['Text_len'],
-		'Count_space_mistake':refined_X_scaled['Count_space_mistake'],
-		'effort_ratio':refined_X_scaled['effort_ratio'],
-		'effort_img_ratio':refined_X_scaled['effort_img_ratio'],
-		'Left' :refined_X_scaled['Left'],
-		'Center':refined_X_scaled['Center'],
-		'Right':refined_X_scaled['Right'],
-		'Justify':refined_X_scaled['Justify']}
+    Other = {
+        'Question_count':refined_X_scaled['Question_count'],
+        'First_ratio': refined_X_scaled['First_ratio'],
+        'Second_ratio':refined_X_scaled['Second_ratio'],
+        'Tag_count':refined_X_scaled['Tag_count'],
+        'Sticker_count':refined_X_scaled['Sticker_count'],
+        'Text_len':refined_X_scaled['Text_len'],
+        'Count_space_mistake':refined_X_scaled['Count_space_mistake'],
+        'effort_ratio':refined_X_scaled['effort_ratio'],
+        'effort_img_ratio':refined_X_scaled['effort_img_ratio'],
+        'Left' :refined_X_scaled['Left'],
+        'Center':refined_X_scaled['Center'],
+        'Right':refined_X_scaled['Right'],
+        'Justify':refined_X_scaled['Justify']}
 
-	all_data = {
-		'Structure': Structure,
-		'Sentiment': Sentiment,
-		'Other': Other,
-		'Predict': Predict_dict,
-		'User': user_dict,
-		'words': {
-			'positive': pos_word,
-			'negative': neg_word,
-			'neutral' : neut_word
-		}
-	} 
+    all_data = {
+        'Structure': Structure,
+        'Sentiment': Sentiment,
+        'Other': Other,
+        'Predict': Predict_dict,
+        #'User': user_dict,
+        'words': {
+            'positive': pos_word,
+            'negative': neg_word,
+            'neutral' : neut_word
+        }
+    }
 
-	return all_data
-
+    return all_data

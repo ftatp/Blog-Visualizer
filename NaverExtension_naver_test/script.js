@@ -1,11 +1,9 @@
-
-var callback = function (response) {
-	console.log(response);
+var s = document.createElement('script');
+s.src = whale.extension.getURL('test.js');
+s.onload = function(){
+	this.remove();
 };
-
-var handle_error = function (obj, error_text_status){
-	console.log(error_text_status + " " + obj);
-};
+(document.head || document.documentElement).appendChild(s);
 
 
 var port = whale.extension.connect({
@@ -15,7 +13,7 @@ var port = whale.extension.connect({
 port.postMessage("Hi BackGround");
 port.onMessage.addListener(function(msg) {
 	//console.log("ghkdckghfkh" + msg);
-	console.log(JSON.parse(msg)); 
+	console.log(JSON.parse(msg));
 
 	data = JSON.parse(msg);
 
@@ -41,7 +39,7 @@ port.onMessage.addListener(function(msg) {
 	else if(data["post"].Predict["predict_cluster_class"] == 7){
 		details = '<p>1. 중앙정렬이 비교적 많음</p><p>2. 블로그 내부 글들의 구조가 "사진-글-사진-글-사진" 혹은 "글-사진-글-사진-글" 순으로 일관되어있음</p>';
 	}
-	
+
 	$('#details').html(details);
 
 });
@@ -89,7 +87,7 @@ $.ajax({
 //	else if(data["post"].Predict["predict_cluster_class"] == 7){
 //		details = '<p>1. 중앙정렬이 비교적 많음</p><p>2. 블로그 내부 글들의 구조가 "사진-글-사진-글-사진" 혹은 "글-사진-글-사진-글" 순으로 일관되어있음</p>'
 //	}
-//	
+//
 //	$('#details').html(details);
 //}
 //
@@ -116,7 +114,7 @@ $.ajax({
 //				data: {
 //					'category': category,
 //					'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
-//				},	
+//				},
 //				success: Success,
 //				dataType: 'json'
 //			});
