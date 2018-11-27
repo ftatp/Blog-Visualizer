@@ -10,6 +10,7 @@ import pickle
 from keras.models import load_model
 import jpype
 import tensorflow as tf
+
 prob = 1
 predict_classes = 1
 kkma = Kkma()
@@ -458,15 +459,15 @@ def get_naver_post_all_data():
 
 # keras model load
 
-    graph = tf.get_default_graph()
-    with graph.as_default():
-        # data type reshape & predict probability
-        prob = model.predict(X_scaled.values.reshape((1, 31))).item()
-        predict_classes = model.predict_classes(X_scaled.values.reshape((1, 31))).item()
-
-    test = load_model(X_scaled)
-    prob = test['prob']
-    predict_classes = test['predict_classes']
+#    graph = tf.get_default_graph()
+#    with graph.as_default():
+#        # data type reshape & predict probability
+#        prob = model.predict(X_scaled.values.reshape((1, 31))).item()
+#        predict_classes = model.predict_classes(X_scaled.values.reshape((1, 31))).item()
+#
+#    test = load_model(X_scaled)
+#    prob = test['prob']
+#    predict_classes = test['predict_classes']
 # Cluster는 cluster model자체가 scaler로 된 모델이라 그냥 origin 값 집어 넣어야함.
     clusterfile = 'static/8-means(0,1,2,5,6,7).pkl'
     cluster = pickle.load(open(clusterfile, 'rb'))

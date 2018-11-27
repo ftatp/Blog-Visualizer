@@ -2,30 +2,56 @@
 var category = 0;
 var url;
 
-whale.tabs.onUpdated.addListener(function(tabid, changeinfo, tab) {
-	if (tab.url != url) {
-		url = tab.url;
+//var port = whale.extension.connect({
+//	name: "connection"		
+//});
+//whale.extension.onConnect.addListener(function(port){
 
-		window.alert(url);
+//	window.alert(port);
+	whale.tabs.onUpdated.addListener(function(tabid, changeinfo, tab) {
+		if (tab.url != url) {
+			url = tab.url;
 
-		// whale.tabs.executeScript(null,{
-		//   code:"var s = document.createElement('div');var newContent = document.createTextNode('환영합니다!');s.appendChild(newContent);(document.body).appendChild(s);"
-		// });
-		var s = document.createElement('script');
-		var c = document.createElement('style');
-		s.src = whale.extension.getURL('test.js');
-		c.src = whale.extension.getURL('test.css');
-		// s.onload = function(){
-		//   this.remove();
-		// };
-		(document.body).appendChild(c);
-		(document.body).appendChild(s);
-	}
-});
+			// whale.tabs.executeScript(null,{
+			//   code:"var s = document.createElement('div');var newContent = document.createTextNode('환영합니다!');s.appendChild(newContent);(document.body).appendChild(s);"
+			// });
 
-if(url.match("blog.")){
-	ajax_post();
-}
+			if(url.match("blog.")){
+				window.alert(url);
+				//1. Change frontground to loading
+				whale.extension.onConnect.addListener(function(port) {
+					port.onMessage.addListener(function(msg) {
+						console.log("message received" + msg);
+						port.postMessage("Sended");
+					});
+				});
+
+				port.postMessage("Sended");
+				window.alert(url);
+
+				
+				
+				//document.getElementById("whole").style.display = "none";
+				//document.getElementById("loader").style.display = "block";
+
+				//2. Send post to server
+				ajax_post();
+
+				//3. Make notification
+				var s = document.createElement('script');
+				var c = document.createElement('style');
+				s.src = whale.extension.getURL('test.js');
+				c.src = whale.extension.getURL('test.css');
+				// s.onload = function(){
+				//   this.remove();
+				// };
+				(document.body).appendChild(c);
+				(document.body).appendChild(s);
+			
+			}
+		}
+	});
+//});
 
 function ajax_post(){
 	$.ajax({
@@ -40,6 +66,7 @@ function ajax_post(){
 	});
 
 }
+
 function Success(data, textStatus, jqXHR){
 	//$('#loading').attr('style', 'visibility:hidden');
 	d3_data = data;
@@ -47,9 +74,8 @@ function Success(data, textStatus, jqXHR){
 	console.log(d3_data);
 
 	whale.extension.onConnect.addListener(function(port) {
-		console.log("Connected .....");
 		port.onMessage.addListener(function(msg) {
-			console.log("message recieved" + msg);
+			console.log("message received" + msg);
 			port.postMessage(JSON.stringify(d3_data));
 		});
 	});
