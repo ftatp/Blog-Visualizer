@@ -13,7 +13,7 @@ var port = whale.extension.connect({
 //whale.extension.onConnect.addlistener(function(port){
 		
 	
-//port.postMessage("Hi BackGround");
+port.postMessage("Hi BackGround");
 port.onMessage.addListener(function(msg) {
 	console.log("Msg: " + msg);
 
