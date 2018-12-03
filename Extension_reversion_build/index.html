@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<HTML>
+<!-- this site is created with: http://www.iueditor.org -->
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/resource/common/iu.css">
+    <link rel="stylesheet" type="text/css" href="/resource/css/pages/index.css">
+    <link rel="stylesheet" type="text/css" href="/sentiment_word.css">
+    <script type='text/javascript' src='resource/js/iu_editor.js'></script>
+    <script type='text/javascript' src='resource/js/jquery-3.1.1.min.js'></script>
+    <script type='text/javascript' src='resource/js/d3.v3.min.js'></script>
+    <script type='text/javascript' src='index.js'></script>
+
+    <!--[if lt IE 9]>
+      <script>
+        document.createElement("header" );
+        document.createElement("footer" );
+        document.createElement("section");
+        document.createElement("nav"    );
+        document.createElement("article");
+      </script>
+      <noscript>
+        <strong>Warning !</strong>
+        Because your browser does not support HTML5, some elements are simulated using JScript.
+        Unfortunately your browser has disabled scripting. Please enable it in order to display this page.
+      </noscript>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="iu-page index">
+      <header class="iu-header header">
+        <div class="iu-center-box center-box-3">
+          <div class="iu-floating-image floating-image-14"></div>
+          <div class="iu-text text-15">
+            <p>사다리</p>
+          </div>
+        </div>
+      </header>
+      <section class="iu-page-content page-content">
+        <section class="iu-section section">
+          <div class="iu-center-box center-box-12">
+            <div class="iu-box box-18">
+              <div class="iu-box box-49">
+                <div class="iu-text text-51">
+                  <p>좋음</p>
+                </div>
+                <div class="iu-text text-50">
+                  <p>이 블로그의 신뢰도</p>
+                </div>
+              </div>
+              <div class="iu-text text-17">
+                <p>경험을 가진 블로거가 작성한 포스팅입니다&nbsp;</p>
+              </div>
+              <div class="iu-box box-24">
+                <div class="iu-floating-image floating-image"></div>
+              </div>
+              <div class="iu-box box"></div>
+              <div class="iu-text text-47">
+                <p>신뢰성 확률 : 99.7%</p>
+              </div>
+              <div class="iu-box box-31"></div>
+            </div>
+            <div class="iu-box box-30">
+              <div class="iu-box box-58">
+                <div class="iu-text text-59">
+                  <p><span style="color: #339966;">O-1번 군집</span>&nbsp;집단에 선정된 블로그들은 <span style="color: #339966;">1인칭, 2인칭 대명사의 빈도가 높고, 블로그의 글 구조가 자유롭고 다양한</span>&nbsp;특징을 가지고&nbsp;있습니다. 현재 블로그의 특징과 <span style="color: #339966;">부분 일치</span>하는 것으로 확인됩니다.</p>
+                </div>
+                <div class="iu-text text-60">
+                  <p>블로그 특징 분석</p>
+                </div>
+                <div class="iu-box box-62"></div>
+              </div>
+              <div class="iu-box box-25">
+                <div class="iu-text text-26">
+                  <p>감정 단어 분석</p>
+                </div>
+                <div class="iu-box box-27"></div>
+                <div class="iu-box box-29">
+                  <div id="chart"></div>
+                  <div id="mainTooltip" class="hidden">
+                    <p><span id="value"></span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+      <footer class="iu-footer footer">
+        <div class="iu-center-box center-box"></div>
+      </footer>
+    </div>
+    <script type='text/javascript' src='resource/js/Sentiment_word.js'></script>
+  </body>
+</HTML>
