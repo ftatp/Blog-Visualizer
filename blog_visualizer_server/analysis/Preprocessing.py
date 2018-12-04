@@ -491,6 +491,11 @@ def get_naver_post_all_data():
     origin_df = origin_df.fillna(0)
     X_scaled = pd.DataFrame(scaler.transform(origin_df),columns = origin_df.columns)
 
+# MLP model load
+    mlp_clf = 'static/MLP.pkl'
+    predict_classes = mlp_clf.predict(test.values.reshape((1, 31))).item()
+    prob = mlp_clf.predict_proba(test.values.reshape((1, 31)))[0][1]
+       
 # keras model load
 
 #    graph = tf.get_default_graph()
