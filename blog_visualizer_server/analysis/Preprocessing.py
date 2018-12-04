@@ -10,6 +10,9 @@ import pickle
 from keras.models import load_model
 import jpype
 import tensorflow as tf
+from sklearn import linear_model
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+
 
 prob = 1
 predict_classes = 1
@@ -107,9 +110,19 @@ class textclass:
         structure = bs.find("div", {"id": "postViewArea"})
         if structure == None:
             structure = bs.find("div", {"class", "se_component_wrap sect_dsc __se_component_area"})
+        # Title
+        title = bs.find("h3", {"class": "se_textarea"})
 
+        # 스마트에디터3 타이틀 제거 임시 적용 (클래스가 다름)
+        if (title == None):
+            title = post.find("span", {"class": "pcol1 itemSubjectBoldfont"})
+        if (title != None):
+            title = title.text.strip()
+        else:
+            title = "TITLE ERROR"
+        
         structure_p_img_tag = structure.find_all(['p', 'img'])
-        structure_dict = {'structure': structure, 'structure_p_img_tag': structure_p_img_tag}
+        structure_dict = {'structure': structure, 'structure_p_img_tag': structure_p_img_tag,'Title':title}
         # structure_p_img_tag : p,img tag만 extract
         # structure : 모든 tag 가져오기
         return structure_dict
@@ -284,11 +297,17 @@ class otherclass:
         effort_dict = {'effort_ratio':effort_text,'effort_img_ratio':effort_img}
         return effort_dict
 
-    def Tag_count(url):
-        driver = webdriver.Chrome('static/chromedriver')
+    def Tag_count(url):        
+#         driver = webdriver.Chrome('static/chromedriver')
+#         driver.get(url)
+#         driver.implicitly_wait(10)
+#         tag_count = len(re.sub('\n','',driver.find_element_by_class_name('wrap_tag').text).strip().split('#')[1:])
+        caps = DesiredCapabilities().CHROME
+        caps["pageLoadStrategy"] = "normal"  #  complete
+        driver = webdriver.PhantomJS('static/phantomjs-2.1.1-macosx/bin/phantomjs',service_args=options,desired_capabilities=caps)
+        # URL 읽어 들이기
         driver.get(url)
-        driver.implicitly_wait(10)
-        tag_count = len(re.sub('\n','',driver.find_element_by_class_name('wrap_tag').text).strip().split('#')[1:])
+        tag_count = len(driver.find_element_by_class_name('wrap_tag').text.split('#')[1:])
         tag_dict = {'tag_count':tag_count}
         driver.close()
         return tag_dict
@@ -385,9 +404,24 @@ def get_naver_post_all_data():
     structure = textclass.Extract_structure_and_tag(User_id,Post_id)
     all_tag = structure['structure']
     p_img_tag = structure['structure_p_img_tag']
-    HTML_preprocessing = textclass.HTML_preprocessing(p_img_tag)
+    title = structure['Title]
     text = HTML_preprocessing['Text']
-
+    HTML_preprocessing = textclass.HTML_preprocessing(p_img_tag)
+    
+# Category prediction
+    #Tfidf_model로 교체
+    tfidf_text = 'static/scaler.pkl'
+    tfidf_title = 'static/scaler.pkl'
+    logreg_model = 'static/Category_model.pkl'
+    logreg = pickle.load(open(logreg_model, 'rb'))
+    vectorizer_Text = pickle.load(open(scalerfile, 'rb'))
+    vectorizer_Title pickle.load(open(scalerfile, 'rb'))                      
+    text_vec = vectorizer_Text.transform([text])
+    title_vec = vectorizer_Title.transform([title])
+    text_vec = pd.DataFrame(text_vec.toarray())
+    title_vec = pd.DataFrame(title_vec.toarray())
+    x = pd.concat([text_vec,title_vec],axis=1)
+    Category = Category[logreg.predict(x)[0]]
 
 # variables
     Text_len = len(text)
