@@ -14,12 +14,13 @@ from sklearn import linear_model
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
-prob = 1
-predict_classes = 1
+# prob = 1
+# predict_classes = 1
 kkma = Kkma()
 sentiment = pd.read_csv('static/polarity.csv')
 word_list = sentiment['ngram'].tolist()
 label = sentiment['max.value'].tolist()
+
 
 Category_average_img_count = {'IT·컴퓨터': 10.128282828282828,
  '건강·의학': 8.582714382174206,
@@ -112,10 +113,9 @@ class textclass:
             structure = bs.find("div", {"class", "se_component_wrap sect_dsc __se_component_area"})
         # Title
         title = bs.find("h3", {"class": "se_textarea"})
-
         # 스마트에디터3 타이틀 제거 임시 적용 (클래스가 다름)
         if (title == None):
-            title = post.find("span", {"class": "pcol1 itemSubjectBoldfont"})
+            title = bs.find("span", {"class": "pcol1 itemSubjectBoldfont"})
         if (title != None):
             title = title.text.strip()
         else:
@@ -304,6 +304,7 @@ class otherclass:
 #         tag_count = len(re.sub('\n','',driver.find_element_by_class_name('wrap_tag').text).strip().split('#')[1:])
         caps = DesiredCapabilities().CHROME
         caps["pageLoadStrategy"] = "normal"  #  complete
+        options = ['--disk-cache=true']
         driver = webdriver.PhantomJS('static/phantomjs-2.1.1-macosx/bin/phantomjs',service_args=options,desired_capabilities=caps)
         # URL 읽어 들이기
         driver.get(url)
@@ -393,7 +394,10 @@ Post_id = '221387605004'
 Category = '맛집'
 
 def get_naver_post_all_data():
-# start
+    Category = np.array(['IT·컴퓨터', '건강·의학', '공연·전시', '교육·학문', '국내여행', '드라마·방송', '등산·낚시·레저',
+           '만화·애니', '맛집', '사진', '스포츠', '시사·인문·경제', '어학·외국어', '와인·술', '육아·결혼',
+           '자동차', '차·커피·디저트', '패션·뷰티'])
+    # start
     url = "http://blog.naver.com/PostView.nhn?blogId=" + User_id + "&logNo=" + Post_id + "&redirect=Dlog&widgetTypeCall=true"
     mobile_url = "http://m.blog.naver.com/PostView.nhn?blogId="+ User_id
     opening_url = 'http://blog.naver.com/profile/intro.nhn?blogId='+ User_id
@@ -404,21 +408,22 @@ def get_naver_post_all_data():
     structure = textclass.Extract_structure_and_tag(User_id,Post_id)
     all_tag = structure['structure']
     p_img_tag = structure['structure_p_img_tag']
-    title = structure['Title]
-    text = HTML_preprocessing['Text']
+    title = structure['Title']
     HTML_preprocessing = textclass.HTML_preprocessing(p_img_tag)
+    text = HTML_preprocessing['Text']
     
 # Category prediction
     #Tfidf_model로 교체
-    tfidf_text = 'static/scaler.pkl'
-    tfidf_title = 'static/scaler.pkl'
+    tfidf_text = 'static/tfidf_text.pkl'
+    tfidf_title = 'static/tfidf_title_.pkl'
     logreg_model = 'static/Category_model.pkl'
     logreg = pickle.load(open(logreg_model, 'rb'))
-    vectorizer_Text = pickle.load(open(scalerfile, 'rb'))
-    vectorizer_Title pickle.load(open(scalerfile, 'rb'))                      
+    vectorizer_Text = pickle.load(open(tfidf_text, 'rb'))
+    vectorizer_Title = pickle.load(open(tfidf_title, 'rb'))
+
     text_vec = vectorizer_Text.transform([text])
-    title_vec = vectorizer_Title.transform([title])
     text_vec = pd.DataFrame(text_vec.toarray())
+    title_vec = vectorizer_Title.transform([title])
     title_vec = pd.DataFrame(title_vec.toarray())
     x = pd.concat([text_vec,title_vec],axis=1)
     Category = Category[logreg.predict(x)[0]]
@@ -492,9 +497,10 @@ def get_naver_post_all_data():
     X_scaled = pd.DataFrame(scaler.transform(origin_df),columns = origin_df.columns)
 
 # MLP model load
-    mlp_clf = 'static/MLP.pkl'
-    predict_classes = mlp_clf.predict(test.values.reshape((1, 31))).item()
-    prob = mlp_clf.predict_proba(test.values.reshape((1, 31)))[0][1]
+    mlp_clf_name = 'static/MLP.pkl'
+    mlp_clf = pickle.load(open(mlp_clf_name, 'rb'))
+    predict_classes = mlp_clf.predict(X_scaled.values.reshape((1, 31))).item()
+    prob = mlp_clf.predict_proba(X_scaled.values.reshape((1, 31)))[0][1]
        
 # keras model load
 
@@ -507,6 +513,7 @@ def get_naver_post_all_data():
 #    test = load_model(X_scaled)
 #    prob = test['prob']
 #    predict_classes = test['predict_classes']
+
 # Cluster는 cluster model자체가 scaler로 된 모델이라 그냥 origin 값 집어 넣어야함.
     clusterfile = 'static/8-means(0,1,2,5,6,7).pkl'
     cluster = pickle.load(open(clusterfile, 'rb'))
