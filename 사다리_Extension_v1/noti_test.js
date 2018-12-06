@@ -1,4 +1,4 @@
- window.onload = function notification(){
+ function notification(){
    var img = whale.runtime.getURL('resource/project/icon_good.png')
    $.notify({
      position:'top-right',
@@ -17,3 +17,5 @@
       whale.runtime.sendMessage({msg: 'sidebar on'});
      });
  };
+
+notification();
