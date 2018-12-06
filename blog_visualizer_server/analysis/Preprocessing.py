@@ -305,7 +305,7 @@ class otherclass:
         caps = DesiredCapabilities().CHROME
         caps["pageLoadStrategy"] = "normal"  #  complete
         options = ['--disk-cache=true']
-        driver = webdriver.PhantomJS('static/phantomjs-2.1.1-macosx/bin/phantomjs',service_args=options,desired_capabilities=caps)
+        driver = webdriver.PhantomJS('static/phantomjs-2.1.1-linux-x86_64/bin/phantomjs',service_args=options,desired_capabilities=caps)
         # URL 읽어 들이기
         driver.get(url)
         tag_count = len(driver.find_element_by_class_name('wrap_tag').text.split('#')[1:])

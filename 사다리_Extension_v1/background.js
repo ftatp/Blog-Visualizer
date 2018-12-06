@@ -47,7 +47,7 @@ function Success(data, textStatus, jqXHR){
 	//   this.remove();
 	// };
 	(document.body).appendChild(s);
-	whale.runtime.sendMessage({msg: 'loading bar off'});
+	whale.runtime.sendMessage({msg: 'loading bar off', data: data});
 };
 
 
