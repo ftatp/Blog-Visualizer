@@ -1,6 +1,6 @@
 
 var category = 0;
-var url;
+var url="";
 
 whale.sidebarAction.show();
 whale.sidebarAction.hide();
@@ -8,14 +8,14 @@ whale.sidebarAction.hide();
 whale.tabs.onUpdated.addListener(function(tabid, changeinfo, tab) {
 	if (tab.url != url) {
 		url = tab.url;
-			if(url.match("blog.naver.com") || url.match("blog.me")) {
-				whale.runtime.sendMessage({msg: 'loading bar on'});
-				ajax_post();
-				// whale.tabs.executeScript(null,{
-				//   code:"var s = document.createElement('div');var newContent = document.createTextNode('환영합니다!');s.appendChild(newContent);(document.body).appendChild(s);"
-				// });
-			};
+		if(url.match("blog.naver.com") || url.match("blog.me")) {
+			whale.runtime.sendMessage({msg: 'loading bar on'});
+			ajax_post();
+			// whale.tabs.executeScript(null,{
+			//   code:"var s = document.createElement('div');var newContent = document.createTextNode('환영합니다!');s.appendChild(newContent);(document.body).appendChild(s);"
+			// });
 		};
+	};
 });
 
 // if(url.match("blog.")){
@@ -27,12 +27,13 @@ function ajax_post(){
 		type: "POST",
 		url: "http://127.0.0.1:8000/analysis/",
 		data: {
-			'category': category,
+			'url': url,
 			'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
 		},
 		success: Success,
 		dataType: 'json'
 	});
+
 };
 
 

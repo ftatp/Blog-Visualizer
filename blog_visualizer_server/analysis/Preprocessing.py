@@ -389,15 +389,16 @@ class htmlclass:
 #         return user_information_dict
 
 # Test
-User_id = 'newpark314'
-Post_id = '221387605004'
-Category = '맛집'
-
-def get_naver_post_all_data():
+def get_naver_post_all_data(User_id, Post_id):
     Category = np.array(['IT·컴퓨터', '건강·의학', '공연·전시', '교육·학문', '국내여행', '드라마·방송', '등산·낚시·레저',
            '만화·애니', '맛집', '사진', '스포츠', '시사·인문·경제', '어학·외국어', '와인·술', '육아·결혼',
            '자동차', '차·커피·디저트', '패션·뷰티'])
     # start
+	
+#User_id = 'newpark314'
+#Post_id = '221387605004'
+#	Category = '맛집'
+
     url = "http://blog.naver.com/PostView.nhn?blogId=" + User_id + "&logNo=" + Post_id + "&redirect=Dlog&widgetTypeCall=true"
     mobile_url = "http://m.blog.naver.com/PostView.nhn?blogId="+ User_id
     opening_url = 'http://blog.naver.com/profile/intro.nhn?blogId='+ User_id
@@ -427,6 +428,8 @@ def get_naver_post_all_data():
     title_vec = pd.DataFrame(title_vec.toarray())
     x = pd.concat([text_vec,title_vec],axis=1)
     Category = Category[logreg.predict(x)[0]]
+
+    print("User id: " + User_id + "\nPost id: " + Post_id + "\nCategory: " + Category)
 
 # variables
     Text_len = len(text)

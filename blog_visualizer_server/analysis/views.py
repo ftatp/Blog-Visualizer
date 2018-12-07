@@ -32,17 +32,24 @@ def stringify_keys(d):
 			del d[key]
 	return d
 
+def parse_url_to_id(url):
+	url_splited = url.split('/')
+	return url_splited[-2], url_splited[-1]
+
 @csrf_exempt
 def index(request):
 	if request.method == "POST":
-		print(request.POST)
-		
+		url = request.POST.get("url")
+		print(url)
+
 		data_csv = pd.read_csv("static/cluster_mean.csv")
 		User_id = 'newpark314'
 		Post_id = '221387605004'
-		Category = '맛집'
 
-		post_data = Preprocessing.get_naver_post_all_data()#User_id, Post_id, Category)
+		User_id, Post_id = parse_url_to_id(url)
+
+#Category = '맛집'
+		post_data = Preprocessing.get_naver_post_all_data(User_id, Post_id)#User_id, Post_id, Category)
 		cluster_dict = data_csv.T.to_dict()
 		
 		data_dict = {
@@ -52,6 +59,7 @@ def index(request):
 
 		data_dict = stringify_keys(data_dict)
 		print(json.dumps(data_dict, indent=4, sort_keys=True))
+		print("--------------------------------------------------------\n\n\n")
 		#print(data_dict)
 		return JsonResponse(data_dict)
 
