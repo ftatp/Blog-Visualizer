@@ -120,7 +120,8 @@ class textclass:
             title = title.text.strip()
         else:
             title = "TITLE ERROR"
-        
+       
+		#print("-----------------------Structure" + structure.text + "\n")
         structure_p_img_tag = structure.find_all(['p', 'img'])
         structure_dict = {'structure': structure, 'structure_p_img_tag': structure_p_img_tag,'Title':title}
         # structure_p_img_tag : p,img tag만 extract

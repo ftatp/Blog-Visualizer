@@ -47,6 +47,7 @@ def index(request):
 		Post_id = '221387605004'
 
 		User_id, Post_id = parse_url_to_id(url)
+		print(User_id, Post_id)
 
 #Category = '맛집'
 		post_data = Preprocessing.get_naver_post_all_data(User_id, Post_id)#User_id, Post_id, Category)
@@ -58,7 +59,7 @@ def index(request):
 		}
 
 		data_dict = stringify_keys(data_dict)
-		print(json.dumps(data_dict, indent=4, sort_keys=True))
+		print(json.dumps(data_dict['post'], indent=4, sort_keys=True))
 		print("--------------------------------------------------------\n\n\n")
 		#print(data_dict)
 		return JsonResponse(data_dict)
