@@ -45,13 +45,13 @@ function change_context(data){
 	predict_type = data["post"].Predict["blog_type"];
 	
 	if(predict_type == 1){
-		credibility_sent = "<p>품평단</p>";
+		credibility_sent = "<p>제품을 업체로부터 제공받아 체험 후 작성한 글로 추정됩니다</p>";
 	}
 	else if(predict_type == 2){
-		credibility_sent = "<p>원고료</p>";
+		credibility_sent = "<p>업체로부터 사진과 글을 제공받아 작성한 글로 추정됩니다</p>";
 	}
 	else{
-		credibility_sent = "<p>일반 블로그</p>";
+		credibility_sent = "<p>일반 블로거의 글로 추정됩니다</p>";
 	}
 
 	//------------------------------------------------------
