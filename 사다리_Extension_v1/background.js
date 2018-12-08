@@ -19,6 +19,7 @@ function ajax_post(){
 	$.ajax({
 		type: "POST",
 		url: "http://127.0.0.1:8000/analysis/",
+		//url: "http://54.180.25.83:8000/analysis/",
 		data: {
 			'url': url,
 			'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
@@ -30,13 +31,9 @@ function ajax_post(){
 };
 
 function Success(data, textStatus, jqXHR){
-	//$('#loading').attr('style', 'visibility:hidden');
 	d3_data = data;
 	var s = document.createElement('script');
 	s.src = whale.extension.getURL('test.js');
-	// s.onload = function(){
-	//   this.remove();
-	// };
 	(document.body).appendChild(s);
 	whale.runtime.sendMessage({msg: 'loading bar off', data: data});
 };

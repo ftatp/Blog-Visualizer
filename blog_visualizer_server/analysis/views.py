@@ -41,18 +41,20 @@ def parse_url_to_id(url):
 	search2 = pattern2.search(url)
 
 	url_splited = url.split('/')
-	
+	uid = ""
+	pid = ""
+
 	if search1 != None:
-		return url_splited[-2], url_splited[-1]
+		uid, pid = url_splited[-2], url_splited[-1]
 	elif search2 != None:
 		for fragment in url_splited:
-			print("--------------fragment---------------", fragment)
-			print(re.search(".blog.me$", fragment))
 			if bool(re.search(".blog.me$", fragment)):
-				print("!@#$!@#!@#!#!#!")
-				return re.sub(".blog.me$", '', fragment), url_splited[-1]
+				uid, pid = re.sub(".blog.me$", '', fragment), url_splited[-1]
 
-	return None, None
+	if pid == "undefined":
+		pid == None
+
+	return uid, pid
 
 
 @csrf_exempt
@@ -69,7 +71,11 @@ def index(request):
 		print(User_id, Post_id)
 
 #Category = '맛집'
-		post_data = Preprocessing.get_naver_post_all_data(User_id, Post_id)#User_id, Post_id, Category)
+		if User_id == None or Post_id == None:
+			return JsonResponse(json.dumps({'nodata': "No Data"}))
+		else:
+			post_data = Preprocessing.get_naver_post_all_data(User_id, Post_id)#User_id, Post_id, Category)
+		
 		cluster_dict = data_csv.T.to_dict()
 		
 		data_dict = {
