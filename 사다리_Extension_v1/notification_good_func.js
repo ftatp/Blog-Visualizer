@@ -19,4 +19,3 @@ function notification_good(){
 };
 
 notification_good();
-

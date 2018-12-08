@@ -19,21 +19,25 @@ whale.extension.onMessage.addListener(function(message, messageSender, sendRespo
 
 function change_context(data){
 	//predict_class = data["post"].Predict["predict_classes"];
-
+	image_url = "";
+	color_code = "";
 	//내용 변경: 신뢰도 텍스트
 	predict_prob = data["post"].Predict["prob"];
 	if(predict_prob >= 0.7){
 		credibility_text = "좋음";
 		image_url = '/resource/project/good.png';
+		color_code = "#4C994E";
 	}
 	else if(predict_prob >= 0.3 && predict_prob < 0.7){
 		credibility_text = "주의";
 		image_url = '/resource/project/soso.png';
+		color_code = "#E77C19";
 	}
 	else{
 		credibility_text = "경계";
 		image_url = '/resource/project/alert.png';
 		console.log(image_url);
+		color_code = "#BF604A";
 	}
 
 	//------------------------------------------------------
@@ -79,6 +83,7 @@ function change_context(data){
 	$('.floating-image').css('background-image', "url(" + image_url + ")");
 	
 	$('#credibility-text').html(credibility_text);
+	$('#credibility-text').css('color', color_code);
 	$('#credibility-num').html("<p>신뢰성 확률: " + (100*predict_prob).toFixed(2).toString() + "%</p>");
 	$('#credibility-sent').html(credibility_sent);
  	$('#details').html(details);

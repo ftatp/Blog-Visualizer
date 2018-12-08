@@ -36,7 +36,7 @@ function Success(data, textStatus, jqXHR){
 	var s = document.createElement('script');
 	
 	try{
-		predict_prob = d3_data.post.Predict.prob
+		predict_prob = d3_data.post.Predict.prob;
 
 		if(predict_prob >= 0.7){
 			s.src = whale.extension.getURL('notification_good.js');
@@ -47,13 +47,13 @@ function Success(data, textStatus, jqXHR){
 		else{
 			s.src = whale.extension.getURL('notification_alert.js');
 		}
+		whale.runtime.sendMessage({msg: 'loading bar off', data: data});
 	}
 	catch(e){
 		s.src = whale.extension.getURL('notification_error.js');
+		//whale.runtime.sendMessage({msg: 'loading bar on'});
 	}
 	
 	(document.body).appendChild(s);
-	whale.runtime.sendMessage({msg: 'loading bar off', data: data});
 };
 
-'/resource/project/icon_error.png';

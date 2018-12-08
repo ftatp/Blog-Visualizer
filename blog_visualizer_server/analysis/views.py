@@ -41,11 +41,15 @@ def parse_url_to_id(url):
 	search2 = pattern2.search(url)
 
 	url_splited = url.split('/')
-	uid = ""
-	pid = ""
+	uid = None
+	pid = None
 
 	if search1 != None:
-		uid, pid = url_splited[-2], url_splited[-1]
+		i = 0
+		for fragment in url_splited:
+			if bool(re.search("^blog.naver.com$", fragment)) and i + 2 < len(url_splited):
+				uid, pid = url_splited[i + 1], url_splited[i + 2]
+			i += 1
 	elif search2 != None:
 		for fragment in url_splited:
 			if bool(re.search(".blog.me$", fragment)):
@@ -68,11 +72,11 @@ def index(request):
 		Post_id = '221387605004'
 
 		User_id, Post_id = parse_url_to_id(url)
-		print(User_id, Post_id)
+		print("user: " + str(User_id) + "  post: " + str(Post_id))
 
 #Category = '맛집'
 		if User_id == None or Post_id == None:
-			return JsonResponse(json.dumps({'nodata': "No Data"}))
+			return JsonResponse({'nodata': "No Data"})
 		else:
 			post_data = Preprocessing.get_naver_post_all_data(User_id, Post_id)#User_id, Post_id, Category)
 		
