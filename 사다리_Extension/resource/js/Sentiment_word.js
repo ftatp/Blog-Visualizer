@@ -28,16 +28,15 @@ function draw_sentiment_pie(data){
     var outerRadius = radius - 10,
         innerRadius = radius - 80;
 
-    var color = d3.scale.ordinal()
-        .range(["#54AF97","#DDD7BB","#E05E42"]);
+    var color = d3.scaleOrdinal(["#54AF97","#DDD7BB","#E05E42"]);
 
 // var color = d3.scaleOrdinal(["#E05E42","#DDD7BB","#54AF97"]);
 
-    var arc = d3.svg.arc()
+    var arc = d3.arc()
         .outerRadius(radius - 10)
         .innerRadius(radius - 60);
 
-    var pie = d3.layout.pie()
+    var pie = d3.pie()
         .sort(null)
         .value(function(d) { return d.num; });
 //
@@ -120,7 +119,7 @@ function draw_sentiment_pie(data){
                 .transition()
                 .duration(500)
                 .ease('elastic')
-                .attr('transform',function(d){
+                .attr('transform', function(d){
                     var dist = 1;
                     d.midAngle = ((d.endAngle - d.startAngle)/2) + d.startAngle;
                     var x = Math.sin(d.midAngle) * dist;

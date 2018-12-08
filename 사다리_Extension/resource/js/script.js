@@ -9,7 +9,6 @@ whale.extension.onMessage.addListener(function(message, messageSender, sendRespo
 		change_context(data);
 
 		//Load sentiment word
-
 		senti_words = data.post.words
 
 		var sentiment_class = ['Positive', "Neutral", "Negative"];
@@ -20,6 +19,78 @@ whale.extension.onMessage.addListener(function(message, messageSender, sendRespo
 		draw_sentiment_pie(temp_sentiment_data);
 		
 		//Load piebarchart 
+		var change_cluster6 = change_index(cluster6);
+		var change_cluster7 = change_index(cluster7);
+		var change_feature = change_index(features_name);
+
+
+		var feature_set_names = ['글의 구조', '기타 정보', '글의 감정'];
+		var feature_nums = [13, 13, 5];
+
+	
+		post = data.post
+		var post_list = [
+			post.Structure['img img img img img'],		
+			post.Structure['img img img img text'],
+			post.Structure['img img img text img'],
+			post.Structure['img img text img img'],
+			post.Structure['img img text img text'],
+			post.Structure['img text img img img'],
+			post.Structure['img text img img text'],
+			post.Structure['img text img text img'],
+			post.Structure['text img img img img'],
+			post.Structure['text img img img text'],
+			post.Structure['text img img text img'],
+			post.Structure['text img text img img'],
+			post.Structure['text img text img text'],
+
+			post.Sentiment['pos_ratio'],
+			post.Sentiment['neg_ratio'],
+			post.Sentiment['subjectivity'],
+			post.Sentiment['polarity'],
+			post.Sentiment['senti_diffs_per_ref'],
+
+			post.Other['Question_count'],
+			post.Other['First_ratio'],
+			post.Other['Second_ratio'],
+			post.Other['Tag_count'],
+			post.Other['Sticker_count'],
+			post.Other['Text_len'],
+			post.Other['Count_space_mistake'],
+			post.Other['effort_ratio'],
+			post.Other['effort_img_ratio'],
+			post.Other['Left'],
+			post.Other['Center'],
+			post.Other['Right'],
+			post.Other['Justify']
+		];
+
+
+		var left_mod_cluster0 = normalizeCluster(post_list);
+		drawPie(feature_set_names, feature_nums, left_mod_cluster0);
+
+		var cluster = data.post.Predict.predict_cluster_class;
+		var cluster_list = "";
+		if(cluster == 0)
+			cluster_list = cluster0;
+		else if(cluster == 1)
+			cluster_list = cluster1;
+		else if(cluster == 2)
+			cluster_list = cluster2;
+		else if(cluster == 5)
+			cluster_list = cluster5;
+		else if(cluster == 6)
+			cluster_list = cluster6;
+		else
+			cluster_list = cluster7;
+		
+		
+		var right_mod_cluster1 = normalizeCluster(cluster_list);
+		drawPie2(feature_set_names, feature_nums, right_mod_cluster1);
+
+
+
+
 		//Load RadarChart
 
 	}
