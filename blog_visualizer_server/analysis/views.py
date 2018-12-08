@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 import os
 import pandas as pd
+import re
 import json
 
 from analysis import Preprocessing
@@ -33,8 +34,26 @@ def stringify_keys(d):
 	return d
 
 def parse_url_to_id(url):
+	pattern1 = re.compile("//blog.naver.com/")
+	pattern2 = re.compile(".blog.me/")
+
+	search1 = pattern1.search(url)
+	search2 = pattern2.search(url)
+
 	url_splited = url.split('/')
-	return url_splited[-2], url_splited[-1]
+	
+	if search1 != None:
+		return url_splited[-2], url_splited[-1]
+	elif search2 != None:
+		for fragment in url_splited:
+			print("--------------fragment---------------", fragment)
+			print(re.search(".blog.me$", fragment))
+			if bool(re.search(".blog.me$", fragment)):
+				print("!@#$!@#!@#!#!#!")
+				return re.sub(".blog.me$", '', fragment), url_splited[-1]
+
+	return None, None
+
 
 @csrf_exempt
 def index(request):
