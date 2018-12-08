@@ -7,6 +7,21 @@ whale.extension.onMessage.addListener(function(message, messageSender, sendRespo
 		data = message['data'];
 		console.log(data);
 		change_context(data);
+
+		//Load sentiment word
+
+		senti_words = data.post.words
+
+		var sentiment_class = ['Positive', "Neutral", "Negative"];
+		var sentiment_value = [senti_words.positive.length, senti_words.neutral.length, senti_words.negative.length];
+
+		var temp_sentiment_data = change_data_type(sentiment_value, sentiment_class);
+		console.log(temp_sentiment_data);
+		draw_sentiment_pie(temp_sentiment_data);
+		
+		//Load piebarchart 
+		//Load RadarChart
+
 	}
 	if (message['msg'] == 'loading bar on'){
 		$('#loading').show();

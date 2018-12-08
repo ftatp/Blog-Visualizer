@@ -1,21 +1,3 @@
-// var data = [
-//   {
-//       "str_lab": "Positive",
-//       "num": 100
-//   },
-//   {
-//       "str_lab": "Neutral",
-//       "num": 44
-//   },
-//   {
-//       "str_lab": "Negative",
-//       "num": 215
-//   }
-// ];
-
-var sentiment_class = ['Positive', "Neutral", "Negative"];
-var sentiment_value = [100, 44, 215];
-
 // data type 맞추기
 function change_data_type(data, features){
     var cluster_data = []; // 최종 형태
@@ -28,9 +10,12 @@ function change_data_type(data, features){
     return cluster_data;
 }
 
-var temp_sentiment_data = change_data_type(sentiment_value, sentiment_class);
+var senti_svg = d3.select("#senti_pie").append("svg");
 
 function draw_sentiment_pie(data){
+
+	senti_svg.remove();
+
     var total_width = 400,
         total_height = 400;
 
@@ -55,20 +40,20 @@ function draw_sentiment_pie(data){
     var pie = d3.layout.pie()
         .sort(null)
         .value(function(d) { return d.num; });
+//
+//    d3.select("#chart").append("div")
+//        .attr("width", total_width)
+//        .attr("height", total_height)
+//        .attr("id","mainPie")
+//        .attr("class","pieBox");
 
-    d3.select("#chart").append("div")
-        .attr("width", total_width)
-        .attr("height", total_height)
-        .attr("id","mainPie")
-        .attr("class","pieBox");
-
-    var svg = d3.select("#mainPie").append("svg")
+    senti_svg = d3.select("#senti_pie").append("svg")
         .attr("width", width)
         .attr("height", height)
         .append("g")
         .attr("transform", "translate(" + width / 2 + "," + height / 2.0 + ")");
 
-    var defs = svg.append("defs");
+    var defs = senti_svg.append("defs");
     var filter = defs.append("filter")
         .attr("id", "drop-shadow")
         .attr("height","130%");
@@ -90,7 +75,7 @@ function draw_sentiment_pie(data){
     feMerge.append("feMergeNode")
         .attr("in", "SourceGraphic");
 
-    var g = svg.selectAll(".arc")
+    var g = senti_svg.selectAll(".arc")
         .data(pie(data))
         .enter().append("g")
         .attr("class", "arc");
@@ -167,4 +152,4 @@ function draw_sentiment_pie(data){
         });
 }
 
-draw_sentiment_pie(temp_sentiment_data);
+ 
