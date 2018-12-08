@@ -336,6 +336,53 @@ class otherclass:
 		driver.close()
 		return tag_dict
 
+	def check_dbdbdeep_type(text):
+		detect_dbdbdeep_item = ['소정의', '원고료', '지원', '마케팅이즈', '의료광고']
+		ls_dbdbdeep = 0
+	
+		# dbdbdeep 찾기
+		for item in detect_dbdbdeep_item:
+			p = re.compile(item)
+			if p.search(text):
+				ls_dbdbdeep = 1
+				break
+				
+		if ls_dbdbdeep == 1:
+			return 0
+		else:
+			return 1
+
+	def check_blog_type(text):
+		experience_item = ['당첨', '무상', '무료', '직접검증', '품평단', '제공받아', '솔직하게', '주관적인', '선정', '르뷰', '서울오빠', '위블', '체험단', '블로그원정대', '블로그 잇']
+		detect_dbdbdeep_item = ['소정의', '원고료', '지원받아', '마케팅이즈', '의료광고']
+		ls_dbdbdeep = 0
+		ls_experience = 0
+
+# 체험형 찾기
+		for item in experience_item:
+			p = re.compile(item)
+			if p.search(text):
+				ls_experience = 1
+				break
+
+# dbdbdeep 찾기
+		if ls_experience == 0:
+			for item in detect_dbdbdeep_item:
+				p = re.compile(item)
+				if p.search(text):
+					ls_dbdbdeep = 1
+					break
+
+		if ls_experience == 1:
+			return 1
+		elif ls_dbdbdeep == 1:
+			return 2
+		else:
+			print("else")
+			return 3
+
+
+
 class htmlclass:
 	def Extract_Alignment(structure):
 		# Align
@@ -389,6 +436,8 @@ def get_naver_post_all_data(User_id, Post_id):
 	title = structure['Title']
 	HTML_preprocessing = textclass.HTML_preprocessing(p_img_tag)
 	text = HTML_preprocessing['Text']
+	#check = otherclass.check_dbdbdeep_type(text)
+	blog_type = otherclass.check_blog_type(text)
 
 	# Category prediction
 	#Tfidf_model로 교체
@@ -452,6 +501,7 @@ def get_naver_post_all_data(User_id, Post_id):
 		Sticker_count, Text_len, Count_Space_mistake, Effort['effort_ratio'], Effort['effort_img_ratio'],
 		Alignment[0], Alignment[1], Alignment[2], Alignment[3]
 	]
+
 	list_2 = Structure_13.tolist()
 
 	total_dataset = list_1 + list_2
@@ -473,7 +523,10 @@ def get_naver_post_all_data(User_id, Post_id):
 	scaler = pickle.load(open(scalerfile, 'rb'))
 	# transform data
 	origin_df = origin_df.fillna(0)
-	X_scaled = pd.DataFrame(scaler.transform(origin_df),columns = origin_df.columns)
+	X_scaled = pd.DataFrame(scaler.transform(origin_df), columns = origin_df.columns)
+
+	#check_df = pd.DataFrame({'check': [check]})
+	#X_scaled = pd.concat([X_scaled, check_df], axis=1)
 
 	# MLP model load
 	mlp_clf_name = 'static/MLP.pkl'
@@ -494,6 +547,7 @@ def get_naver_post_all_data(User_id, Post_id):
 #    predict_classes = test['predict_classes']
 
 	# Cluster는 cluster model자체가 scaler로 된 모델이라 그냥 origin 값 집어 넣어야함.
+
 	clusterfile = 'static/8-means(0,1,2,5,6,7).pkl'
 	cluster = pickle.load(open(clusterfile, 'rb'))
 	# predict cluster class
@@ -506,7 +560,12 @@ def get_naver_post_all_data(User_id, Post_id):
 	# pos_word
 	# neg_word
 
-	Predict_dict = {'prob':prob,'predict_classes':predict_classes,'predict_cluster_class':predict_cluster_class}
+	Predict_dict = {
+		'prob': prob,
+		'predict_classes': predict_classes,
+		'predict_cluster_class': predict_cluster_class,
+		'blog_type': blog_type
+	}
 #user_dict = {'Blog_name':Blog_name,'Blog_nickname':Blog_nickname,'Count_neighbors':Count_neighbors,'Count_visitors':Count_visitors,'blog_opening_date':blog_opening_date}
 #
 

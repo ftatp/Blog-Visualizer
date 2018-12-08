@@ -1,10 +1,10 @@
-function notification(){
-	var img = whale.runtime.getURL('resource/project/icon_good.png')
+function notification_alert(){
+	var img = whale.runtime.getURL('/resource/project/icon_alert.png');
 	$.notify({
-		position:'top-right',
-		icon:img,
+		position: 'top-right',
+		icon: img,
 		className: 'el-notification',
-		timeout: 2000,
+		timeout: 5000,
 		closeIcon: '',
 		closable: true, // is closable?
 		offset: 16 // in pixels
@@ -12,10 +12,11 @@ function notification(){
 
 	$('.el-notification').css('width','auto');
 	$('.el-notification').css('background-color','');
-	$(".el-notification").delay(600).fadeTo("slow", 0.2);
+	$(".el-notification").delay(4500).fadeTo("slow", 0.4);
 	$('.el-notification').click(function(){
 		whale.runtime.sendMessage({msg: 'sidebar on'});
 	});
 };
 
-notification();
+notification_alert();
+

@@ -18,22 +18,40 @@ whale.extension.onMessage.addListener(function(message, messageSender, sendRespo
 
 
 function change_context(data){
-	predict_class = data["post"].Predict["predict_classes"];
-	if(predict_class == 0){
-		credibility_text = "0";
-	}
-	else if(predict_class == 1){
-		credibility_text = "1";
-	}
-	//...................
-	//------------------------------------------------------
+	//predict_class = data["post"].Predict["predict_classes"];
 
+	//내용 변경: 신뢰도 텍스트
 	predict_prob = data["post"].Predict["prob"];
+	if(predict_prob >= 0.7){
+		credibility_text = "좋음";
+		image_url = '/resource/project/good.png';
+	}
+	else if(predict_prob >= 0.3 && predict_prob < 0.7){
+		credibility_text = "주의";
+		image_url = '/resource/project/soso.png';
+	}
+	else{
+		credibility_text = "경계";
+		image_url = '/resource/project/alert.png';
+		console.log(image_url);
+	}
 
 	//------------------------------------------------------
-	credibility_sent = "<p>????</p>";
+	//내용 변경: 블로그 타입
+	predict_type = data["post"].Predict["blog_type"];
 	
+	if(predict_type == 1){
+		credibility_sent = "<p>품평단</p>";
+	}
+	else if(predict_type == 2){
+		credibility_sent = "<p>원고료</p>";
+	}
+	else{
+		credibility_sent = "<p>일반 블로그</p>";
+	}
+
 	//------------------------------------------------------
+	//내용 변경: 블로그 군집 특징
 	predict_cluster = data["post"].Predict["predict_cluster_class"];
 
  	if(predict_cluster == 5){
@@ -55,6 +73,11 @@ function change_context(data){
  		details = '<p>1. 중앙정렬이 비교적 많음</p><p>2. 블로그 내부 글들의 구조가 "사진-글-사진-글-사진" 혹은 "글-사진-글-사진-글" 순으로 일관되어있음</p>';
  	}
 
+	//-------------------------------------------------------
+  
+	
+	$('.floating-image').css('background-image', "url(" + image_url + ")");
+	
 	$('#credibility-text').html(credibility_text);
 	$('#credibility-num').html("<p>신뢰성 확률: " + (100*predict_prob).toFixed(2).toString() + "%</p>");
 	$('#credibility-sent').html(credibility_sent);

@@ -1,3 +1,4 @@
 whale.tabs.executeScript(null,{
-	file:"noti_test.js"
+	file:"notification_good_func.js"
 });
+
