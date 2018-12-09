@@ -144,10 +144,10 @@ function change_context(data){
 	predict_type = data["post"].Predict["blog_type"];
 	
 	if(predict_type == 1){
-		credibility_sent = "<p>제품을 업체로부터 제공받아 체험 후 작성한 글로 추정됩니다</p>";
+		credibility_sent = "<p>제품을 제공받아 체험 후 작성한 글로 추정됩니다</p>";
 	}
 	else if(predict_type == 2){
-		credibility_sent = "<p>업체로부터 사진과 글을 제공받아 작성한 글로 추정됩니다</p>";
+		credibility_sent = "<p>사진, 글을 제공받아 경험 없이 작성한 글로 추정됩니다.</p>";
 	}
 	else{
 		credibility_sent = "<p>일반 블로거의 글로 추정됩니다</p>";
@@ -157,7 +157,7 @@ function change_context(data){
 	//내용 변경: 블로그 군집 특징
 	predict_cluster = data["post"].Predict["predict_cluster_class"];
 	if(predict_cluster == 5){
-		details = "<p style='line-height:160%'>1. 1인칭 2인칭 단어가 다른 블로그 집단에 비해서 제일 많이 사용되었습니다.</p><p style='line-height:160%'>2. 블로그 내부 글들의 구조가 자유롭고 다양합니다. </p>";
+		details = "<p style='line-height:160%'>1. <strong>1인칭 2인칭 단어</strong>가 다른 블로그 집단에 비해서 제일 많이 사용되었습니다.</p><p style='line-height:160%'>2. 블로그 내부 글들의 <strong>구조가 자유롭고 다양</strong>합니다. </p>";
 		cluster_type = "<p>A type</p>";
 	}
 	else if(data["post"].Predict["predict_cluster_class"] == 6){
@@ -177,7 +177,7 @@ function change_context(data){
 		cluster_type = "<p>E type</p>";
 		}
 	else if(data["post"].Predict["predict_cluster_class"] == 1){
-		details = "<p style='line-height:160%'>1. <strong>가운데 정렬기능</strong>을 다른 정렬기능(왼쪽, 오른쪽, 양쪽)보다 많이 사용한 것으로 <br>보입니다.</p><p style='line-height:160%'>2. 블로그 내부 글의 구조가 <strong>'사진-글-사진-글-사진'</strong> 혹은 <strong>'글-사진-글-사진-글;'</strong> 순으로 일관되게 작성된 것으로 확인됩니다.</p>";
+		details = "<p style='line-height:160%'>1. <strong>가운데 정렬기능</strong>을 다른 정렬기능(왼쪽, 오른쪽, 양쪽)보다 많이 사용한 것으로 보입니다.</p><p style='line-height:160%'>2. 블로그 내부 글의 구조가 <strong>'사진-글-사진-글-사진'</strong> 혹은 <strong>'글-사진-글-사진-글'</strong> 순으로 일관되게 작성된 것으로 확인됩니다.</p>";
 		cluster_type = "<p>F type</p>";
 	}
 	//-------------------------------------------------------

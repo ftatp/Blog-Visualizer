@@ -219,11 +219,11 @@ var draw_structure_radarChart = {
 };
 
 var sentiment_text = [
-    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 \u00A0 P / N',
-    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 \u00A0 n / N',
-    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 \u00A0 (n + p) / N',
-    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 \u00A0 (p - n) / (p + n)',
-    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 \u00A0 (p - n) / N',
+    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 P / N',
+    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 n / N',
+    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 (n + p) / N',
+    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 (p - n) / (p + n)',
+    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 (p - n) / N',
 ];
 
 var draw_emotion_radarChart = {
