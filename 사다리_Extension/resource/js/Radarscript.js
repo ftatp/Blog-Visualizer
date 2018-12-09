@@ -93,159 +93,155 @@ function temp_return_cluster_value(data, features, features_index){   // data, f
 // }
 
 // data type 맞추기
-function change_data_type(data, features){
-    var cluster_data = []; // 최종 형태
-    var cluster_list = [];
-    for (var i = 0; i < features.length; i ++){
-        var cluster_dict = {};
-        for (var j = 0; j < features.length; j ++){
-            cluster_dict['axis'] = features[i];
-            cluster_dict['value'] = data[i];
-        }
-        cluster_list.push(cluster_dict);
-    }
-    cluster_data.push(cluster_list);
-    return cluster_data;
+//Data
+
+
+function draw_all_radar(data){
+	function change_data_type(data, features){
+		var cluster_data = []; // 최종 형태
+		var cluster_list = [];
+		for (var i = 0; i < features.length; i ++){
+			var cluster_dict = {};
+			for (var j = 0; j < features.length; j ++){
+				cluster_dict['axis'] = features[i];
+				cluster_dict['value'] = data[i];
+			}
+			cluster_list.push(cluster_dict);
+		}
+		cluster_data.push(cluster_list);
+		console.log('console.log_cluster_data', cluster_data);
+		return cluster_data;
+	}
+	post = data.post
+	var post_list = [
+		post.Structure['img img img img img'],		
+		post.Structure['img img img img text'],
+		post.Structure['img img img text img'],
+		post.Structure['img img text img img'],
+		post.Structure['img img text img text'],
+		post.Structure['img text img img img'],
+		post.Structure['img text img img text'],
+		post.Structure['img text img text img'],
+		post.Structure['text img img img img'],
+		post.Structure['text img img img text'],
+		post.Structure['text img img text img'],
+		post.Structure['text img text img img'],
+		post.Structure['text img text img text'],
+
+		post.Sentiment['pos_ratio'],
+		post.Sentiment['neg_ratio'],
+		post.Sentiment['subjectivity'],
+		post.Sentiment['polarity'],
+		post.Sentiment['senti_diffs_per_ref'],
+
+		post.Other['Question_count'],
+		post.Other['First_ratio'],
+		post.Other['Second_ratio'],
+		post.Other['Tag_count'],
+		post.Other['Sticker_count'],
+		post.Other['Text_len'],
+		post.Other['Count_space_mistake'],
+		post.Other['effort_ratio'],
+		post.Other['effort_img_ratio'],
+		post.Other['Left'],
+		post.Other['Center'],
+		post.Other['Right'],
+		post.Other['Justify']
+	];
+
+
+	var cluster_id = post.Predict.predict_cluster_class;
+
+	var cluster_data = data.clusters[cluster_id];
+	
+	var cluster_list = [
+		cluster_data['img img img img img'],		
+		cluster_data['img img img img text'],
+		cluster_data['img img img text img'],
+		cluster_data['img img text img img'],
+		cluster_data['img img text img text'],
+		cluster_data['img text img img img'],
+		cluster_data['img text img img text'],
+		cluster_data['img text img text img'],
+		cluster_data['text img img img img'],
+		cluster_data['text img img img text'],
+		cluster_data['text img img text img'],
+		cluster_data['text img text img img'],
+		cluster_data['text img text img text'],
+		
+		cluster_data['pos_ratio'],
+		cluster_data['neg_ratio'],
+		cluster_data['subjectivity'],
+		cluster_data['polarity'],
+		cluster_data['senti_diffs_per_ref'],
+		
+		cluster_data['Question_count'],
+		cluster_data['First_ratio'],
+		cluster_data['Second_ratio'],
+		cluster_data['Tag_count'],
+		cluster_data['Sticker_count'],
+		cluster_data['Text_len'],
+		cluster_data['Count_space_mistake'],
+		cluster_data['effort_ratio'],
+		cluster_data['effort_img_ratio'],
+		cluster_data['Left'],
+		cluster_data['Center'],
+		cluster_data['Right'],
+		cluster_data['Justify']
+	]
+
+	console.log("Post data: ", post_list);
+	console.log("Cluster data: ", cluster_list);
+
+	var normal_left_data = normalizeCluster(post_list);
+	var normal_right_data = normalizeCluster(cluster_list);
+	// console.log("normal_left_data: ", normal_left_data);
+
+	// structure
+	var left_structure_value = temp_return_cluster_value(normal_left_data, structure_features, structure_index);
+	var left_structure_data = change_data_type(left_structure_value, view_structure_features);
+
+	var right_structure_value = temp_return_cluster_value(normal_right_data, structure_features, structure_index);
+	var right_structure_data = change_data_type(right_structure_value, view_structure_features);
+	// console.log("left_structure_value: ", left_structure_value);
+
+	// sentiment
+	var left_sentiment_value = temp_return_cluster_value(normal_left_data, sentiment_features, sentiment_index);
+	var left_sentiment_data = change_data_type(left_sentiment_value, view_sentiment_features);
+
+	var right_sentiment_value = temp_return_cluster_value(normal_right_data, sentiment_features, sentiment_index);
+	var right_sentiment_data = change_data_type(right_sentiment_value, view_sentiment_features);
+	// console.log("left_sentiment_value: ", left_sentiment_value);
+
+	// others
+	var left_others_value = temp_return_cluster_value(normal_left_data, others_features, others_index);
+	var left_ohters_data = change_data_type(left_others_value, view_others_features);
+	var right_others_value = temp_return_cluster_value(normal_right_data, others_features, others_index);
+	var right_others_data = change_data_type(right_others_value, view_others_features);
+	// console.log("left_others_value: ", left_others_value);
+
+	//Options for the Radar chart, other than default
+	var mycfg = {
+		w: w,
+		h: h,
+		maxValue: 0.6,
+		levels: 6,
+		ExtraWidthX: 300
+	}
+
+	//Call function to draw the Radar chart
+	//Will expect that data is in %'s
+	draw_structure_radarChart.draw("#structure_left", left_structure_data, mycfg);
+	draw_structure_radarChart.draw("#structure_right", right_structure_data, mycfg);
+	//console.log('left-data_length', left_structure_data.length);
+	//console.log('right_data_length', right_structure_data.length);
+
+	draw_emotion_radarChart.draw("#sentiment_left", left_sentiment_data, mycfg);
+	draw_emotion_radarChart.draw("#sentiment_right", right_sentiment_data, mycfg);
+
+	draw_others_radarChart.draw("#others_left", left_ohters_data, mycfg);
+	draw_others_radarChart.draw("#others_right", right_others_data, mycfg);
 }
 
-//Data
-var path = '../resource/data/cluster_mean.csv';
-d3.csv(path, function(error, data) {
-    if (error) {
-        console.log("error!!!")
-    }
-    var normal_left_data = normalizeCluster(temp_data6);
-    var normal_right_data = normalizeCluster(temp_data7);
-    // console.log("normal_left_data: ", normal_left_data);
-
-    // structure
-    var left_structure_value = temp_return_cluster_value(normal_left_data, structure_features, structure_index);
-    var left_structure_data = change_data_type(left_structure_value, view_structure_features);
-    var right_structure_value = temp_return_cluster_value(normal_right_data, structure_features, structure_index);
-    var right_structure_data = change_data_type(right_structure_value, view_structure_features);
-    // console.log("left_structure_value: ", left_structure_value);
-
-    // sentiment
-    var left_sentiment_value = temp_return_cluster_value(normal_left_data, sentiment_features, sentiment_index);
-    var left_sentiment_data = change_data_type(left_sentiment_value, view_sentiment_features);
-    var right_sentiment_value = temp_return_cluster_value(normal_right_data, sentiment_features, sentiment_index);
-    var right_sentiment_data = change_data_type(right_sentiment_value, view_sentiment_features);
-    // console.log("left_sentiment_value: ", left_sentiment_value);
-
-    // others
-    var left_others_value = temp_return_cluster_value(normal_left_data, others_features, others_index);
-    var left_ohters_data = change_data_type(left_others_value, view_others_features);
-    var right_others_value = temp_return_cluster_value(normal_right_data, others_features, others_index);
-    var right_others_data = change_data_type(right_others_value, view_others_features);
-    // console.log("left_others_value: ", left_others_value);
-
-    //Options for the Radar chart, other than default
-    var mycfg = {
-        w: w,
-        h: h,
-        maxValue: 0.6,
-        levels: 6,
-        ExtraWidthX: 300
-    }
-
-    //Call function to draw the Radar chart
-    //Will expect that data is in %'s
-    draw_structure_radarChart.draw("#structure_left", left_structure_data, mycfg);
-    draw_structure_radarChart.draw("#structure_right", right_structure_data, mycfg);
-
-    draw_emotion_radarChart.draw("#sentiment_left", left_sentiment_data, mycfg);
-    draw_emotion_radarChart.draw("#sentiment_right", right_sentiment_data, mycfg);
-
-    draw_others_radarChart.draw("#others_left", left_ohters_data, mycfg);
-    draw_others_radarChart.draw("#others_right", right_others_data, mycfg);
-
-    // call the plot function
-    // RadViz()
-    //     .DOMTable(IDtable)
-    //     .DOMRadViz(IDradviz)
-    //     .TableTitle(titles)
-    //     .ColorAccessor(colorAccessor)
-    //     .Dimensionality(dimensions)
-    //     .DAnchor(dimensionAnchor)
-    //     .DATA(data)
-    //     .call();
-});
-
-// temp
-// 대명사 사용 빈도 ( 'First_ratio', 'Second_ratio')
-// 글의 스타일 ( 'Question_count', 'Tag_count', 'Sticker_count')
-// 글의 정성 ( 'Text_len',  'effort_ratio', 'effort_img_ratio', 'Count_space_mistake',)
-// 글의 정렬 ( 'Left', 'Center', 'Right', 'Justify')
-
-// // 원본 데이터
-// var d = [
-//     [
-//         {axis:"Email", value:0.59},
-//         {axis:"Social Networks",value:0.56},
-//         {axis:"Internet Banking",value:0.42},
-//         {axis:"News Sportsites",value:0.34},
-//         {axis:"Search Engine",value:0.48},
-//         {axis:"View Shopping sites",value:0.14},
-//         {axis:"Paying Online",value:0.11},
-//         {axis:"Buy Online",value:0.05},
-//         {axis:"Stream Music",value:0.07},
-//         {axis:"Online Gaming",value:0.12},
-//         {axis:"Navigation",value:0.27},
-//         {axis:"App connected to TV program",value:0.03},
-//         {axis:"Offline Gaming",value:0.12},
-//     ]
-// ];
 
 
-
-////////////////////////////////////////////
-/////////// Initiate legend ////////////////
-////////////////////////////////////////////
-
-// function () {
-//
-// }
-// var svg = d3.select('#body')
-//     .selectAll('svg')
-//     .append('svg')
-//     .attr("width", w+300)
-//     .attr("height", h)
-
-// //Create the title for the legend
-// var text = svg.append("text")
-//     .attr("class", "title")
-//     .attr('transform', 'translate(90,0)')
-//     .attr("x", w - 30)
-//     .attr("y", 10)
-//     .attr("font-size", "12px")
-//     .attr("fill", "#404040")
-//     .text("What % of owners use a specific service in a week");
-//
-// //Initiate Legend
-// var legend = svg.append("g")
-//     .attr("class", "legend")
-//     .attr("height", 100)
-//     .attr("width", 240)
-//     .attr('transform', 'translate(140,20)');
-
-// //Create colour squares
-// legend.selectAll('rect')
-//     .data(LegendOptions)
-//     .enter()
-//     .append("rect")
-//     .attr("x", w - 65)
-//     .attr("y", function(d, i){ return i * 20;})
-//     .attr("width", 10)
-//     .attr("height", 10)
-//     .style("fill", function(d, i){ return colorscale(i);});
-
-// //Create text next to squares
-// legend.selectAll('text')
-//     .data(LegendOptions)
-//     .enter()
-//     .append("text")
-//     .attr("x", w - 52)
-//     .attr("y", function(d, i){ return i * 20 + 9;})
-//     .attr("font-size", "11px")
-//     .attr("fill", "#737373")
-//     .text(function(d) { return d; });

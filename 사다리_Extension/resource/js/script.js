@@ -92,6 +92,7 @@ whale.extension.onMessage.addListener(function(message, messageSender, sendRespo
 		drawPie2(feature_set_names, feature_nums, right_mod_cluster1);
 
 		//Load RadarChart
+		draw_all_radar(data);
 
 	}
 	if (message['msg'] == 'loading bar on'){

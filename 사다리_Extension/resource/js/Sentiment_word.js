@@ -199,7 +199,7 @@ function draw_sentiment_pie(data){
 
     g.append("path")
         .attr("d", arc)
-        .style("fill", function(d) { return color(d.data.num); })
+        .style("fill", function(d, i) { return color(i); })
 
         .on("mousemove", function(d) {
             d3.select(this)
@@ -209,7 +209,7 @@ function draw_sentiment_pie(data){
             d3.select(this)
                 .transition()
                 .duration(500)
-                .ease('elastic')
+                .ease(d3.easeElastic)
                 .attr('transform', function(d){
                     var dist = 1;
                     d.midAngle = ((d.endAngle - d.startAngle)/2) + d.startAngle;
@@ -219,7 +219,7 @@ function draw_sentiment_pie(data){
                 });
             var mousePos = d3.mouse(divNode);
             d3.select("#mainTooltip")
-                .style("left", mousePos[0] - 140 + "px")
+                .style("left", mousePos[0] - 120 + "px")
                 .style("top", mousePos[1] - 805 + "px")
                 .select("#value")
                 .attr("text-anchor", "middle")
@@ -235,7 +235,7 @@ function draw_sentiment_pie(data){
             d3.select(this)
                 .transition()
                 .duration(500)
-                .ease('bounce')
+                .ease(d3.easeBounce)
                 .attr('transform','translate(0,0)');
 
             d3.select("#mainTooltip").classed("hidden", true);

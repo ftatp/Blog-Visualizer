@@ -2,7 +2,7 @@ console.log("check RadarChart");
 
 var draw_structure_radarChart = {
     draw: function(id, d, options){
-        console.log("check id: ", id)
+        //console.log("check id: ", id)
         var cfg = {
             radius: 5,
             w: 250,
@@ -30,7 +30,10 @@ var draw_structure_radarChart = {
         }
 
         var mod_num = 2.2;
-
+//		var d = [d];
+//		for (var i =0; i<d.length;i++){
+//			console.log(d[i]);
+//		};
         cfg.maxValue = Math.max(cfg.maxValue, d3.max(d, function(i){return d3.max(i.map(function(o){return o.value;}))}));
         var allAxis = (d[0].map(function(i, j){return i.axis}));
         var total = allAxis.length;
@@ -139,7 +142,8 @@ var draw_structure_radarChart = {
 
 
         d.forEach(function(y, x){
-            dataValues = [];
+			dataValues = [];
+			//console.log("Y: " , y);
             g.selectAll(".nodes")
                 .data(y, function(j, i){
                     dataValues.push([
@@ -148,6 +152,7 @@ var draw_structure_radarChart = {
                     ]);
                 });
             dataValues.push(dataValues[0]);
+			//console.log('polygon data ibnida', dataValues[0]);
             g.selectAll(".area")
                 .data([dataValues])
                 .enter()
@@ -363,6 +368,7 @@ var draw_emotion_radarChart = {
                     ]);
                 });
             dataValues.push(dataValues[0]);
+			console.log('check_value',dataValues);
             g.selectAll(".area")
                 .data([dataValues])
                 .enter()
