@@ -8,12 +8,13 @@ whale.sidebarAction.hide();
 whale.tabs.onUpdated.addListener(function(tabid, changeinfo, tab) {
 	if (tab.url != url) {
 		url = tab.url;
-		if(url.match("blog.naver.com") || url.match("blog.me")) {
+		if((url.match("//blog.naver.com/") && !url.match("Redirect")) || url.match(".blog.me/")) {
 			whale.runtime.sendMessage({msg: 'loading bar on'});
 			ajax_post();
 		};
 	};
 });
+//blog.naver.com/juble93?Redirect=Log&logNo=221380270514
 
 function ajax_post(){
 	$.ajax({
