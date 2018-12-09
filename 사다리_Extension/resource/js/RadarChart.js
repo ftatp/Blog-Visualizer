@@ -104,7 +104,7 @@ var draw_structure_radarChart = {
                         .style("left", 0 + "px")
                         .style("top", 5 + "px")
                         .select("#text_structure_left")
-                        .text("\u00A0 이미지나 글의 배치 순서 \u00A0\u00A0\u00A0 (text-image-text-image-text)");
+                        .text("\u00A0 이미지나 글의 배치 순서 \u00A0\u00A0\u00A0\u00A0\u00A0 (text-image-text-image-text)");
                     d3.select("#tooltip_structure_left").classed("hidden", false);
                 })
 
@@ -131,7 +131,7 @@ var draw_structure_radarChart = {
                         .style("left", 0 + "px")
                         .style("top", 5 + "px")
                         .select("#text_structure_right")
-                        .text("\u00A0 이미지나 글의 배치 순서 \u00A0\u00A0\u00A0 (text-image-text-image-text)");
+                        .text("\u00A0 이미지나 글의 배치 순서 \u00A0\u00A0\u00A0\u00A0\u00A0 (text-image-text-image-text)");
                     d3.select("#tooltip_structure_right").classed("hidden", false);
                 })
 
@@ -219,11 +219,11 @@ var draw_structure_radarChart = {
 };
 
 var sentiment_text = [
-    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 P / N',
-    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 n / N',
-    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 (n + p) / N',
-    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 (p - n) / (p + n)',
-    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 (p - n) / N',
+    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 \u00A0 P / N',
+    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 \u00A0 n / N',
+    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 \u00A0 (n + p) / N',
+    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 \u00A0 (p - n) / (p + n)',
+    '\u00A0 \u00A0  p : 긍정, n : 부정, N : 전체  \u00A0 \u00A0 \u00A0 \u00A0 (p - n) / N',
 ];
 
 var draw_emotion_radarChart = {

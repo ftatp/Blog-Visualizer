@@ -157,27 +157,27 @@ function change_context(data){
 	//내용 변경: 블로그 군집 특징
 	predict_cluster = data["post"].Predict["predict_cluster_class"];
 	if(predict_cluster == 5){
-		details = "<p>1. 1인칭 2인칭 단어가 다른 블로그 집단에 비해서 제일 많이 사용되었습니다.</p><p>2. 블로그 내부 글들의 구조가 자유롭고 다양합니다. </p>";
+		details = "<p style='line-height:160%'>1. 1인칭 2인칭 단어가 다른 블로그 집단에 비해서 제일 많이 사용되었습니다.</p><p style='line-height:160%'>2. 블로그 내부 글들의 구조가 자유롭고 다양합니다. </p>";
 		cluster_type = "<p>A type</p>";
 	}
 	else if(data["post"].Predict["predict_cluster_class"] == 6){
-		details = "<p>1. 오른쪽, 왼쪽, 가운데 등 글의 정렬에 신경을 많이 쓴 블로그 입니다. </p><p>2. 객관적으로 블로그를 작성한 것처럼 보입니다. </p><p>3. 또한, 글 대비 사진 비율이 많이 사용되었습니다.</p>";
+		details = "<p style='line-height:160%'>1. 오른쪽, 왼쪽, 가운데 등 <strong>글의 정렬에 신경</strong>을 많이 쓴 블로그 입니다. </p><p style='line-height:160%'>2. <strong>객관적</strong>으로 블로그를 작성한 것처럼 보입니다. </p><p style='line-height:160%'>3. 또한, 글 대비 <strong>사진 비율이 많이</strong> 사용되었습니다.</p>";
 		cluster_type = "<p>B type</p>";
 	}
 	else if(data["post"].Predict["predict_cluster_class"] == 2){//2
-		details = "<p>1. 감정을 나타내는 단어의 비중이 높습니다. </p><p>2. 블로그의 글 구조가 자유롭고.</p><p>3. 글 대비 사진 비율이 다른 집단과 비교하여 비교적 많이 사용되었습니다.</p>";
+		details = "<p style='line-height:160%'>1. <strong>감정을 나타내는 단어의 비중</strong>이 높습니다. </p><p style='line-height:160%'>2. 블로그의 <strong>글 구조가 자유</strong>롭고.</p><p style='line-height:160%'>3. 글 대비 <strong>사진 비율</strong>이 다른 집단과 비교하여 비교적 많이 사용되었습니다.</p>";
 		cluster_type = "<p>C type</p>";
 	}
 	else if(data["post"].Predict["predict_cluster_class"] == 7){//
-		details = "<p>1. 감정 점수값이 가장 높으며, 네이버에서 제공하는 스티커를 많이 사용하는 것으로 보입니다.</p><p> 2. 동일 분야 내 에서 글과 이미지 수가 많은 특징을 보입니다.</p>";
+		details = "<p style='line-height:160%'>1. <strong>감정 점수값이 가장 높으며</strong>, 네이버에서 제공하는 <strong>스티커를 많이 사용</strong>하는 것으로 보입니다.</p><p style='line-height:160%'> 2. 동일 분야 내 에서 <strong>글과 이미지 수가 많은 특징</strong>을 보입니다.</p>";
 		cluster_type = "<p>D type</p>";
 	}
 	else if(data["post"].Predict["predict_cluster_class"] == 0){
-		details = "<p>1. 물음표가 가장 많이 사용되었으며, 감정 단어 중 긍정 단어의 비율이 가장 높습니다.</p><p>2. 동일 분야 내에서 장문으로 글이 작성되었으며, 태그가 가장 많이 사용되었습니다.</p><p>3. 글의 띄어쓰기 오류가 상대적으로 다른 블로그들에 비해 많이 발견됩니다.</p>";
+		details = "<p style='line-height:200%'>1. <strong>물음표가 가장 많이 사용</strong>되었으며, 감정 단어 중 <strong>긍정 단어의 비율</strong>이 가장 높습니다.</p><p style='line-height=200%'>2. 동일 분야 내에서 <strong>장문</strong>으로 글이 작성되었으며, <strong>태그가 가장 많이 사용</strong>되었습니다.</p><p style='line-height:200%'>3. 글의 <strong>띄어쓰기 오류</strong>가 상대적으로 다른 블로그들에 비해 많이 발견됩니다.</p>";
 		cluster_type = "<p>E type</p>";
 		}
 	else if(data["post"].Predict["predict_cluster_class"] == 1){
-		details = '<p>1. 가운데 정렬기능을 다른 정렬기능(왼쪽, 오른쪽, 양쪽)보다 많이 사용한 것으로 보입니다.</p><p>2. 또한, 블로그 내부 글의 구조가 "사진-글-사진-글-사진" 혹은 "글-사진-글-사진-글" 순으로 일관되게 작성된 것으로 확인됩니다.</p>';
+		details = "<p style='line-height:160%'>1. <strong>가운데 정렬기능</strong>을 다른 정렬기능(왼쪽, 오른쪽, 양쪽)보다 많이 사용한 것으로 <br>보입니다.</p><p style='line-height:160%'>2. 블로그 내부 글의 구조가 <strong>'사진-글-사진-글-사진'</strong> 혹은 <strong>'글-사진-글-사진-글;'</strong> 순으로 일관되게 작성된 것으로 확인됩니다.</p>";
 		cluster_type = "<p>F type</p>";
 	}
 	//-------------------------------------------------------

@@ -217,14 +217,17 @@
 }
 .text-59 {
   font-size:14px;
-  height:82px;
+  height:100px;
   left:0px;
   margin-left:auto;
   margin-right:auto;
   right:0px;
-  top:100px;
+  top:70px;
   width:492px;
+  margin-bottom:20px;
+  font-stretch:wider;
 }
+
 .text-60 {
   font-size:18px;
   font-weight:700;
