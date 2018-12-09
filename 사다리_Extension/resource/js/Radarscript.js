@@ -109,7 +109,7 @@ function draw_all_radar(data){
 			cluster_list.push(cluster_dict);
 		}
 		cluster_data.push(cluster_list);
-		console.log('console.log_cluster_data', cluster_data);
+		//console.log('console.log_cluster_data', cluster_data);
 		return cluster_data;
 	}
 	post = data.post
@@ -190,8 +190,8 @@ function draw_all_radar(data){
 		cluster_data['Justify']
 	]
 
-	console.log("Post data: ", post_list);
-	console.log("Cluster data: ", cluster_list);
+	//console.log("Post data: ", post_list);
+	//console.log("Cluster data: ", cluster_list);
 
 	var normal_left_data = normalizeCluster(post_list);
 	var normal_right_data = normalizeCluster(cluster_list);

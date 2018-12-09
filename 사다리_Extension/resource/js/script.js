@@ -3,10 +3,10 @@ whale.extension.onMessage.addListener(function(message, messageSender, sendRespo
     // messageSender is an object that contains info about the context that sent the message
     // sendResponse is a function to run when you have a response
 	if (message['msg'] == 'loading bar off'){
-		console.log("mess: loading bar off");
+		//console.log("mess: loading bar off");
 		$('#loading').hide();
 		data = message['data'];
-		console.log(data);
+		//console.log(data);
 		change_context(data);
 
 		//Load sentiment word
@@ -16,9 +16,19 @@ whale.extension.onMessage.addListener(function(message, messageSender, sendRespo
 		var sentiment_value = [senti_words.positive.length, senti_words.neutral.length, senti_words.negative.length];
 
 		var temp_sentiment_data = change_data_type(sentiment_value, sentiment_class);
-		console.log(temp_sentiment_data);
-		draw_sentiment_pie(temp_sentiment_data);
+		//console.log(temp_sentiment_data);
 		
+		if(sentiment_value[0] == 0 && sentiment_value[1] == 0 && sentiment_value[2] == 0){
+			draw_sentiment_pie(temp_sentiment_data);
+			$('#senti_check').css('display','block');
+			$('#senti_pie').css('display','none');
+		}
+		else{
+			$('#senti_pie').css('display','block');
+			$('#senti_check').css('display','none');
+			draw_sentiment_pie(temp_sentiment_data);
+		}
+
 		//Load piebarchart 
 		var change_cluster6 = change_index(cluster6);
 		var change_cluster7 = change_index(cluster7);
@@ -84,7 +94,9 @@ whale.extension.onMessage.addListener(function(message, messageSender, sendRespo
 			cluster_list = cluster6;
 		else
 			cluster_list = cluster7;
-		
+
+
+
 		var lefts = document.getElementsByClassName("total_left");
 
 		//$(.total_left).find
@@ -123,7 +135,7 @@ function change_context(data){
 	else{
 		credibility_text = "경계";
 		image_url = '/resource/project/alert.png';
-		console.log(image_url);
+		//console.log(image_url);
 		color_code = "#BF604A";
 	}
 
@@ -144,26 +156,30 @@ function change_context(data){
 	//------------------------------------------------------
 	//내용 변경: 블로그 군집 특징
 	predict_cluster = data["post"].Predict["predict_cluster_class"];
-
- 	if(predict_cluster == 5){
- 		details = "<p>1. 경험적 글이 많음(1인칭, 2인칭 대명사를 제일 많이 사용함).</p><p>2. 블로그 내부 글들의 구조가 자유롭고 다양함(규칙적인 방식으로 글을 쓰지 않음)</p>";
- 	}
- 	else if(data["post"].Predict["predict_cluster_class"] == 6){
- 		details = "<p>1. 정렬 기능을 제일 많이 사용함.</p><p>2. 주관성이 낮고 냉정함 (감정표현을 제일 쓰지 않음).</p><p>3. 이미지를 제일 많이 사용한 집단.</p>";
- 	}
- 	else if(data["post"].Predict["predict_cluster_class"] == 2){//2
- 		details = "<p>1. 긍정 부정의 단어 표현이 가장 많이 사용됨.</p><p>2. 블로그 내부 글들의 구조가 자유롭고 다양함(규칙적인 방식으로 글을 쓰지 않음).</p><p>3. 이미지가 다른 집단과 비교하여 비교적 많이 사용됨.</p>";
- 	}
- 	else if(data["post"].Predict["predict_cluster_class"] == 7){//
- 		details = "<p>1. 감정 단어 점수값이 높으며 스티커를 많이 사용함.</p><p>2. 해당분야에 비해서 글과 이미지 수가 많음.</p>";
- 	}
- 	else if(data["post"].Predict["predict_cluster_class"] == 0){
- 		details = "<p>1. 물음표가 가장 많이 사용되었으며 긍정 단어의 비율이 높음.</p><p>2. 글의 길이가 가장 길고 태그를 제일 많이 사용함.</p><p>3. 띄어쓰기 오류가 많이 발견됨.</p>";
- 	}
- 	else if(data["post"].Predict["predict_cluster_class"] == 1){
- 		details = '<p>1. 중앙정렬이 비교적 많음</p><p>2. 블로그 내부 글들의 구조가 "사진-글-사진-글-사진" 혹은 "글-사진-글-사진-글" 순으로 일관되어있음</p>';
- 	}
-
+	if(predict_cluster == 5){
+		details = "<p>1. 1인칭 2인칭 단어가 다른 블로그 집단에 비해서 제일 많이 사용되었습니다.</p><p>2. 블로그 내부 글들의 구조가 자유롭고 다양합니다. </p>";
+		cluster_type = "<p>A type</p>";
+	}
+	else if(data["post"].Predict["predict_cluster_class"] == 6){
+		details = "<p>1. 오른쪽, 왼쪽, 가운데 등 글의 정렬에 신경을 많이 쓴 블로그 입니다. </p><p>2. 객관적으로 블로그를 작성한 것처럼 보입니다. </p><p>3. 또한, 글 대비 사진 비율이 많이 사용되었습니다.</p>";
+		cluster_type = "<p>B type</p>";
+	}
+	else if(data["post"].Predict["predict_cluster_class"] == 2){//2
+		details = "<p>1. 감정을 나타내는 단어의 비중이 높습니다. </p><p>2. 블로그의 글 구조가 자유롭고.</p><p>3. 글 대비 사진 비율이 다른 집단과 비교하여 비교적 많이 사용되었습니다.</p>";
+		cluster_type = "<p>C type</p>";
+	}
+	else if(data["post"].Predict["predict_cluster_class"] == 7){//
+		details = "<p>1. 감정 점수값이 가장 높으며, 네이버에서 제공하는 스티커를 많이 사용하는 것으로 보입니다.</p><p> 2. 동일 분야 내 에서 글과 이미지 수가 많은 특징을 보입니다.</p>";
+		cluster_type = "<p>D type</p>";
+	}
+	else if(data["post"].Predict["predict_cluster_class"] == 0){
+		details = "<p>1. 물음표가 가장 많이 사용되었으며, 감정 단어 중 긍정 단어의 비율이 가장 높습니다.</p><p>2. 동일 분야 내에서 장문으로 글이 작성되었으며, 태그가 가장 많이 사용되었습니다.</p><p>3. 글의 띄어쓰기 오류가 상대적으로 다른 블로그들에 비해 많이 발견됩니다.</p>";
+		cluster_type = "<p>E type</p>";
+		}
+	else if(data["post"].Predict["predict_cluster_class"] == 1){
+		details = '<p>1. 가운데 정렬기능을 다른 정렬기능(왼쪽, 오른쪽, 양쪽)보다 많이 사용한 것으로 보입니다.</p><p>2. 또한, 블로그 내부 글의 구조가 "사진-글-사진-글-사진" 혹은 "글-사진-글-사진-글" 순으로 일관되게 작성된 것으로 확인됩니다.</p>';
+		cluster_type = "<p>F type</p>";
+	}
 	//-------------------------------------------------------
   
 	
@@ -173,6 +189,10 @@ function change_context(data){
 	$('#credibility-text').css('color', color_code);
 	$('#credibility-num').html("<p>신뢰성 확률: " + (100*predict_prob).toFixed(2).toString() + "%</p>");
 	$('#credibility-sent').html(credibility_sent);
+	$('.text-92').html(cluster_type);
+	$('.text-76').html(cluster_type);
+	$('.text-84').html(cluster_type);
+	$('.text-93').html(cluster_type);
  	$('#details').html(details);
 
 }

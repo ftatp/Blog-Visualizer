@@ -104,8 +104,11 @@ function normalizeCluster(data){
     return normal_cluster;
 }
 
+
 function drawPie(names, datas, cluster_data) {
-	console.log("!!!!!!!!!!!!In drawpie!!!!!!!!!!!!!!11");
+	$('.total_left').remove();
+
+	//console.log("!!!!!!!!!!!!In drawpie!!!!!!!!!!!!!!11");
     var features_count = 0;
     var pie_data = datas;
     var pie_name = names;
@@ -282,14 +285,16 @@ function drawPie(names, datas, cluster_data) {
 
 
 function drawPie2(names, datas, cluster_data) {
+	$('.total_right').remove();
+
     var features_count = 0;
     var pie_data = datas;
     var pie_name = names;
-    var radar_render = d3.select("#total_right").append("svg"),
+    var radar_render = d3.select("#total_right").append("svg").attr('class', 'total_right');
         //width = svg.attr("width"),
         //height = svg.attr("height"),
         //radius = Math.min(width, height) / 2,
-        g = radar_render.append("g")
+    var g = radar_render.append("g")
             .attr("transform", "translate(" + width / 2.0 + "," + height / 2.0 + ")");
 
     var color = d3.scaleOrdinal(['#cdfaf0','#00e6b9','#000f3b']); // 웨일 색

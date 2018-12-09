@@ -368,7 +368,7 @@ var draw_emotion_radarChart = {
                     ]);
                 });
             dataValues.push(dataValues[0]);
-			console.log('check_value',dataValues);
+			//console.log('check_value', dataValues);
             g.selectAll(".area")
                 .data([dataValues])
                 .enter()

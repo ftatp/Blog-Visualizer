@@ -353,7 +353,7 @@ class otherclass:
 			return 1
 
 	def check_blog_type(text):
-		experience_item = ['당첨', '무상', '무료', '직접검증', '품평단', '제공받아', '솔직하게', '주관적인', '선정', '르뷰', '서울오빠', '위블', '체험단', '블로그원정대', '블로그 잇']
+		experience_item = ['당첨', '무상으로 제공받아', '무료로 제공받아', '직접검증', '품평단', '제공받아', '솔직하게', '주관적인', '선정', '르뷰', '서울오빠', '위블', '체험단', '블로그원정대', '블로그 잇']
 		detect_dbdbdeep_item = ['소정의', '원고료', '지원받아', '마케팅이즈', '의료광고']
 		ls_dbdbdeep = 0
 		ls_experience = 0
@@ -552,6 +552,10 @@ def get_naver_post_all_data(User_id, Post_id):
 	cluster = pickle.load(open(clusterfile, 'rb'))
 	# predict cluster class
 	predict_cluster_class = cluster.predict(origin_df).item()
+	if (predict_cluster_class == 3) or (predict_cluster_class == 4):
+		predict_cluster_class = 1
+
+
 
 	# Final save csv file
 	Predict_df = pd.DataFrame({'prob':prob,'predict_classes':predict_classes,'predict_cluster_class':predict_cluster_class},index=[0])
@@ -568,6 +572,8 @@ def get_naver_post_all_data(User_id, Post_id):
 	}
 #user_dict = {'Blog_name':Blog_name,'Blog_nickname':Blog_nickname,'Count_neighbors':Count_neighbors,'Count_visitors':Count_visitors,'blog_opening_date':blog_opening_date}
 #
+
+#if Predict_dict.predict_
 
 	refined_X_scaled = X_scaled.T.to_dict()[0]
 
