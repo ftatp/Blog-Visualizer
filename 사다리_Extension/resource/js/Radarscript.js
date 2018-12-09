@@ -1,4 +1,3 @@
-console.log("check RadarScript");
 var w = 175,
     h = 185;
 

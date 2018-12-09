@@ -1,5 +1,3 @@
-console.log("check d3.js");
-
 // https://d3js.org v5.7.0 Copyright 2018 Mike Bostock
 (function (global, factory) {
 typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
