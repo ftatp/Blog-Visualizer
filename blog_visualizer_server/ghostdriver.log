@@ -3,3 +3,5 @@
 [INFO  - 2018-12-09T10:43:03.152Z] Session [345a38e0-fb9f-11e8-9912-9fa938a40d43] - page.customHeaders:  - {}
 [INFO  - 2018-12-09T10:43:03.152Z] Session [345a38e0-fb9f-11e8-9912-9fa938a40d43] - Session.negotiatedCapabilities - {"browserName":"phantomjs","version":"2.1.1","driverName":"ghostdriver","driverVersion":"1.2.0","platform":"linux-unknown-64bit","javascriptEnabled":true,"takesScreenshot":true,"handlesAlerts":false,"databaseEnabled":false,"locationContextEnabled":false,"applicationCacheEnabled":false,"browserConnectionEnabled":false,"cssSelectorsEnabled":true,"webStorageEnabled":false,"rotatable":false,"acceptSslCerts":false,"nativeEvents":true,"proxy":{"proxyType":"direct"}}
 [INFO  - 2018-12-09T10:43:03.152Z] SessionManagerReqHand - _postNewSessionCommand - New Session Created: 345a38e0-fb9f-11e8-9912-9fa938a40d43
+[INFO  - 2018-12-09T10:48:02.340Z] SessionManagerReqHand - _cleanupWindowlessSessions - Asynchronous Sessions clean-up phase starting NOW
+[INFO  - 2018-12-09T10:48:02.340Z] SessionManagerReqHand - _cleanupWindowlessSessions - Deleted Session '345a38e0-fb9f-11e8-9912-9fa938a40d43', because windowless

@@ -20,6 +20,14 @@ kkma = Kkma()
 sentiment = pd.read_csv('static/polarity.csv')
 word_list = sentiment['ngram'].tolist()
 label = sentiment['max.value'].tolist()
+pos_word = ['행복/NNG;하/XSV;어요/EFN;./SF','행복/NNG;하/XSV;네요/EFN;./SF','감사/NNG;하/XSV;네요/EFN','좋/VA;아요/EFN','최고/NNG;에/JKM;요/JX','추천/NNG;하/XSV;ㅂ니다/EFN;!/SF','추천/NNG;하/XSV;ㅂ니다/EFN','대박/NNG;이/VCP;에요/EFN','대박/NNG;이/VCP;에요/EFN;!/SF','최고/NNG;의/JKG','자/VA;ㄹ/ETD','되/VV;ㄹ/ETD;거/NNB;에/JKM;요/JX;!/SF','희망차/VA;ㄴ/ETD','낫/VA;은/ETD','훨씬/MAG','낫/VA;다/EFN','상쾌/XR;하/XSA;ㄴ/ETD','행복/NNG;하/XSV;ㄴ/ETD','사랑/NNG;에/JKM','기쁘/VA;어요/EFN','도전/NNG','긍정적/NNG;이/VCP;ㄴ/ETD','응원/NNG;하/XSV;ㄴ다/EFN','설레/VV;ㄴ다/EFN','설레/VV;다/EFN','예쁘/VA;다/EFN']
+neg_word = ['무섭/VA;어요/EFN','무섭/VA;게/ECD','화가/NNG;나/VV;었/EPT;어요/EFN','분/NNB;이/VCP','겁쟁이/NNG;에/JKM;요/JX','겁/NNG;에/JKM','질리/VV;어서/ECD','구리/NNG;이/VCP;다/EFN','별로/MAG;네/MDN;요/NNG','별/NNG;로/XSN;에/JKM;요/JX','않/VXV;을/ETD','배리/VV;고/ECE','속/VV;았/EPT;네요/EFN','속/VV;았/EPT;어요/EFN','우울/NNG;하/XSV;ㄴ/ETD','힘들/VA;어요/EFN','어렵/VA;어요/EFN','부정적/NNG;이/VCP;ㄴ/ETD','게으르/VA;다/EFN','아프/VA;다/EFN','화나/VV;ㄴ다/EFN','불행/NNG;하/XSA;다/EFN','가난/NNG;하다/NNP']
+pos_label = ['POS' for i in range(len(pos_word)) ]
+neg_label = ['NEG' for i in range(len(pos_word)) ]
+word_list = word_list + pos_word
+word_list = word_list + neg_label
+label = label + pos_label
+label = label + neg_label
 
 
 Category_average_img_count = {'IT·컴퓨터': 10.128282828282828,
