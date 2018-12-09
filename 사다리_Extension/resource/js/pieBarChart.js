@@ -105,14 +105,15 @@ function normalizeCluster(data){
 }
 
 function drawPie(names, datas, cluster_data) {
+	console.log("!!!!!!!!!!!!In drawpie!!!!!!!!!!!!!!11");
     var features_count = 0;
     var pie_data = datas;
     var pie_name = names;
-    var radar_render = d3.select("#total_left").append("svg"),
+    var radar_render = d3.select("#total_left").append("svg").attr('class', 'total_left');
         //width = svg.attr("width"),
         //height = svg.attr("height"),
         //radius = Math.min(width, height) / 2,
-        g = radar_render.append("g")
+    var g = radar_render.append("g")
             .attr("transform", "translate(" + width / 2.0 + "," + height / 2.0 + ")");
 
     // var color = d3.scaleOrdinal(['#4daf4a','#377eb8','#ff7f00']); // 기존 색, 초 파 주
@@ -199,84 +200,83 @@ function drawPie(names, datas, cluster_data) {
 
         // bar chart 색깔 별로 칠하기
         // 인덱스의 시작은 글의 구조 부터
-        (function () {
-            // 글의 구조 범위 0 ~ 4 / 23 ~ 31
-            if (i >= 23 || i < 5) {
-                var text_data = change_feature[features_count];
-                radar_render.append('rect')
-                    .attr('x', 0)
-                    .attr('y', 0)
-                    .attr('width', rect_size * 7)
-                    .attr('height', bar_area_width)
-                    .attr('transform', 'translate(' + bar_x + ',' + bar_y + ') rotate(' + (degree + 5) + ')')
-                    .attr('fill', '#cdfaf0')
-                    // .attr('opacity', 0.5)
-                    .attr('stroke', '#cccccc')
-                    .on("mouseover", function(d) {
-                        d3.select("#tooltip_left")
-                            .style("left", 60 + "px")
-                            .style("top", 5 + "px")
-                            .select("#text_total_left")
-                            .text(text_data);
-                        d3.select("#tooltip_left").classed("hidden", false);
-                    })
-                    .on("mouseout", function() {
-                        d3.select("#tooltip_left").classed("hidden", true);
-                    })
-                features_count += 1;
-            }
+        
+		// 글의 구조 범위 0 ~ 4 / 23 ~ 31
+		if (i >= 23 || i < 5) {
+			var text_data = change_feature[features_count];
+			radar_render.append('rect')
+				.attr('x', 0)
+				.attr('y', 0)
+				.attr('width', rect_size * 7)
+				.attr('height', bar_area_width)
+				.attr('transform', 'translate(' + bar_x + ',' + bar_y + ') rotate(' + (degree + 5) + ')')
+				.attr('fill', '#cdfaf0')
+				// .attr('opacity', 0.5)
+				.attr('stroke', '#cccccc')
+				.on("mouseover", function(d) {
+					d3.select("#tooltip_left")
+						.style("left", 60 + "px")
+						.style("top", 5 + "px")
+						.select("#text_total_left")
+						.text(text_data);
+					d3.select("#tooltip_left").classed("hidden", false);
+				})
+				.on("mouseout", function() {
+					d3.select("#tooltip_left").classed("hidden", true);
+				})
+			features_count += 1;
+		}
 
-            // 기타 범위 5 ~ 17
-            else if (i > 4 && i < 18) {
-                var text_data = change_feature[features_count];
-                radar_render.append('rect')
-                    .attr('x', 0)
-                    .attr('y', 0)
-                    .attr('width', rect_size * 7)
-                    .attr('height', bar_area_width)
-                    .attr('transform', 'translate(' + bar_x + ',' + bar_y + ') rotate(' + (degree + 5) + ')')
-                    .attr('fill', '#00e6b9')
-                    // .attr('opacity', 0.5)
-                    .attr('stroke', '#cccccc')
-                    .on("mouseover", function(d) {
-                        d3.select("#tooltip_left")
-                            .style("left", 60 + "px")
-                            .style("top", 5 + "px")
-                            .select("#text_total_left")
-                            .text(text_data);
-                        d3.select("#tooltip_left").classed("hidden", false);
-                    })
-                    .on("mouseout", function() {
-                        d3.select("#tooltip_left").classed("hidden", true);
-                    })
-                features_count += 1;
-            }
-            // 글의 감정 범위 18 ~ 22
-            else if (i >= 18 && i < 23) {
-                var text_data = change_feature[features_count];
-                radar_render.append('rect')
-                    .attr('x', 0)
-                    .attr('y', 0)
-                    .attr('width', rect_size * 7)
-                    .attr('height', bar_area_width)
-                    .attr('transform', 'translate(' + bar_x + ',' + bar_y + ') rotate(' + (degree + 5) + ')')
-                    .attr('fill', '#000f3b')
-                    // .attr('opacity', 0.5)
-                    .attr('stroke', '#cccccc')
-                    .on("mouseover", function(d) {
-                        d3.select("#tooltip_left")
-                            .style("left", 60 + "px")
-                            .style("top", 5 + "px")
-                            .select("#text_total_left")
-                            .text(text_data);
-                        d3.select("#tooltip_left").classed("hidden", false);
-                    })
-                    .on("mouseout", function() {
-                        d3.select("#tooltip_left").classed("hidden", true);
-                    })
-                features_count += 1;
-            }
-        }) ();
+		// 기타 범위 5 ~ 17
+		else if (i > 4 && i < 18) {
+			var text_data = change_feature[features_count];
+			radar_render.append('rect')
+				.attr('x', 0)
+				.attr('y', 0)
+				.attr('width', rect_size * 7)
+				.attr('height', bar_area_width)
+				.attr('transform', 'translate(' + bar_x + ',' + bar_y + ') rotate(' + (degree + 5) + ')')
+				.attr('fill', '#00e6b9')
+				// .attr('opacity', 0.5)
+				.attr('stroke', '#cccccc')
+				.on("mouseover", function(d) {
+					d3.select("#tooltip_left")
+						.style("left", 60 + "px")
+						.style("top", 5 + "px")
+						.select("#text_total_left")
+						.text(text_data);
+					d3.select("#tooltip_left").classed("hidden", false);
+				})
+				.on("mouseout", function() {
+					d3.select("#tooltip_left").classed("hidden", true);
+				})
+			features_count += 1;
+		}
+		// 글의 감정 범위 18 ~ 22
+		else if (i >= 18 && i < 23) {
+			var text_data = change_feature[features_count];
+			radar_render.append('rect')
+				.attr('x', 0)
+				.attr('y', 0)
+				.attr('width', rect_size * 7)
+				.attr('height', bar_area_width)
+				.attr('transform', 'translate(' + bar_x + ',' + bar_y + ') rotate(' + (degree + 5) + ')')
+				.attr('fill', '#000f3b')
+				// .attr('opacity', 0.5)
+				.attr('stroke', '#cccccc')
+				.on("mouseover", function(d) {
+					d3.select("#tooltip_left")
+						.style("left", 60 + "px")
+						.style("top", 5 + "px")
+						.select("#text_total_left")
+						.text(text_data);
+					d3.select("#tooltip_left").classed("hidden", false);
+				})
+				.on("mouseout", function() {
+					d3.select("#tooltip_left").classed("hidden", true);
+				})
+			features_count += 1;
+		}
     }
 }
 
@@ -455,25 +455,4 @@ function drawPie2(names, datas, cluster_data) {
         }) ();
     }
 }
-
-// ####################
-var feature_set_names = ['글의 구조', '기타 정보', '글의 감정'];
-var feature_nums = [13, 13, 5];
-
-// drawPie(feature_set_names, feature_nums);
-// drawPie2(feature_set_names, feature_nums);
-
-d3.csv("../resource/data/cluster_mean.csv", function(error, data) {
-    if (error) {
-        console.log("error!!!")
-    }
-
-    var left_mod_cluster0 = normalizeCluster(change_cluster6);
-    drawPie(feature_set_names, feature_nums, left_mod_cluster0);
-
-    var right_mod_cluster1 = normalizeCluster(change_cluster7);
-    drawPie2(feature_set_names, feature_nums, right_mod_cluster1);
-
-});
-
 

@@ -3,6 +3,7 @@ whale.extension.onMessage.addListener(function(message, messageSender, sendRespo
     // messageSender is an object that contains info about the context that sent the message
     // sendResponse is a function to run when you have a response
 	if (message['msg'] == 'loading bar off'){
+		console.log("mess: loading bar off");
 		$('#loading').hide();
 		data = message['data'];
 		console.log(data);
@@ -84,12 +85,11 @@ whale.extension.onMessage.addListener(function(message, messageSender, sendRespo
 		else
 			cluster_list = cluster7;
 		
-		
+		var lefts = document.getElementsByClassName("total_left");
+
+		//$(.total_left).find
 		var right_mod_cluster1 = normalizeCluster(cluster_list);
 		drawPie2(feature_set_names, feature_nums, right_mod_cluster1);
-
-
-
 
 		//Load RadarChart
 
