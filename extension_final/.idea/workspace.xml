@@ -13,24 +13,24 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6796537">
+    <splitter split-orientation="horizontal" split-proportion="0.54545456">
       <split-first>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="d3.v3.min.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resource/js/d3.v3.min.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-38">
+                <state relative-caret-position="0">
                   <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="456">
-                  <caret line="136" column="29" lean-forward="true" selection-start-line="136" selection-start-column="29" selection-end-line="136" selection-end-column="29" />
+                <state relative-caret-position="2584">
+                  <caret line="136" column="29" lean-forward="false" selection-start-line="136" selection-start-column="29" selection-end-line="136" selection-end-column="29" />
                   <folding>
                     <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#table#0;n#div#1;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
@@ -46,7 +46,7 @@
           <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resource/css/pages/index.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="168">
+                <state relative-caret-position="16017">
                   <caret line="843" column="31" lean-forward="false" selection-start-line="843" selection-start-column="31" selection-end-line="843" selection-end-column="31" />
                   <folding />
                 </state>
@@ -57,7 +57,7 @@
             <entry file="file://$PROJECT_DIR$/resource/css/pages/sentiment_word.css">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="95">
-                  <caret line="5" column="24" lean-forward="true" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+                  <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
                   <folding />
                 </state>
               </provider>
@@ -67,7 +67,7 @@
             <entry file="file://$PROJECT_DIR$/resource/js/RadarChart.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="380">
-                  <caret line="442" column="23" lean-forward="true" selection-start-line="442" selection-start-column="23" selection-end-line="442" selection-end-column="23" />
+                  <caret line="442" column="23" lean-forward="false" selection-start-line="442" selection-start-column="23" selection-end-line="442" selection-end-column="23" />
                   <folding>
                     <element signature="e#66#9124#0" expanded="false" />
                     <element signature="e#9148#9505#0" expanded="false" />
@@ -85,7 +85,7 @@
           <file leaf-file-name="Radarscript.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resource/js/Radarscript.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="437">
+                <state relative-caret-position="2603">
                   <caret line="153" column="51" lean-forward="false" selection-start-line="153" selection-start-column="36" selection-end-line="153" selection-end-column="51" />
                   <folding>
                     <element signature="e#2040#2472#0" expanded="false" />
@@ -101,22 +101,18 @@
           <file leaf-file-name="Sentiment_word.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resource/js/Sentiment_word.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="380">
+                <state relative-caret-position="2546">
                   <caret line="147" column="55" lean-forward="false" selection-start-line="147" selection-start-column="55" selection-end-line="147" selection-end-column="55" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="pieBarChart.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="pieBarChart.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resource/js/pieBarChart.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="6669">
-                  <caret line="383" column="49" lean-forward="false" selection-start-line="383" selection-start-column="49" selection-end-line="383" selection-end-column="49" />
+                <state relative-caret-position="814">
+                  <caret line="204" column="63" lean-forward="false" selection-start-line="204" selection-start-column="63" selection-end-line="204" selection-end-column="63" />
                   <folding>
                     <element signature="e#462#1217#0" expanded="false" />
                     <element signature="e#1235#1942#0" expanded="false" />
@@ -131,13 +127,37 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="RadarChart.js" pinned="false" current-in-tab="true">
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="pieBarChart.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/resource/js/pieBarChart.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="244">
+                  <caret line="389" column="12" lean-forward="false" selection-start-line="389" selection-start-column="12" selection-end-line="389" selection-end-column="12" />
+                  <folding>
+                    <element signature="e#462#1217#0" expanded="false" />
+                    <element signature="e#1235#1942#0" expanded="false" />
+                    <element signature="e#1960#2642#0" expanded="false" />
+                    <element signature="e#2660#3354#0" expanded="false" />
+                    <element signature="e#3372#4070#0" expanded="false" />
+                    <element signature="e#4088#4776#0" expanded="false" />
+                    <element signature="e#8218#8282#0" expanded="false" />
+                    <element signature="e#14933#14997#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="RadarChart.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resource/js/RadarChart.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="589">
-                  <caret line="103" column="37" lean-forward="true" selection-start-line="103" selection-start-column="31" selection-end-line="103" selection-end-column="37" />
+                <state relative-caret-position="1957">
+                  <caret line="103" column="37" lean-forward="false" selection-start-line="103" selection-start-column="31" selection-end-line="103" selection-end-column="37" />
                   <folding>
-                    <element signature="e#18399#25317#0" expanded="false" />
+                    <element signature="e#9148#9505#0" expanded="false" />
+                    <element signature="e#9538#18367#0" expanded="false" />
                     <element signature="e#25338#34334#0" expanded="false" />
                     <element signature="e#34355#43351#0" expanded="false" />
                     <element signature="e#43373#52380#0" expanded="false" />
@@ -182,7 +202,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds">
+    <option name="x" value="244" />
+    <option name="y" value="10" />
     <option name="width" value="1874" />
     <option name="height" value="1047" />
   </component>
@@ -201,8 +223,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -238,12 +258,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../사다리_Extension_1207 - pm7" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
   </component>
   <component name="RunDashboard">
@@ -272,32 +294,34 @@
       <option name="presentableId" value="Default" />
       <updated>1544184883654</updated>
       <workItem from="1544184886210" duration="32885000" />
+      <workItem from="1544353227510" duration="114000" />
+      <workItem from="1544353380084" duration="32000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32885000" />
+    <option name="totallyTimeSpent" value="33031000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1874" height="1047" extended-state="1" />
+    <frame x="244" y="10" width="1874" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12970936" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -314,27 +338,158 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/manifest.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="31" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resource/js/d3.v3.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-38">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2584">
+          <caret line="136" column="29" lean-forward="true" selection-start-line="136" selection-start-column="29" selection-end-line="136" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#1;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#2;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#2;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#svg#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#2;n#div#2;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#svg#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#2;n#div#2;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/css/pages/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16017">
+          <caret line="843" column="31" lean-forward="false" selection-start-line="843" selection-start-column="31" selection-end-line="843" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/css/pages/sentiment_word.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="24" lean-forward="true" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/js/Radarscript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2907">
+          <caret line="153" column="51" lean-forward="false" selection-start-line="153" selection-start-column="36" selection-end-line="153" selection-end-column="51" />
+          <folding>
+            <element signature="e#2040#2472#0" expanded="false" />
+            <element signature="e#2492#2911#0" expanded="false" />
+            <element signature="e#2931#3365#0" expanded="false" />
+            <element signature="e#3385#3817#0" expanded="false" />
+            <element signature="e#3837#4256#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resource/js/Sentiment_word.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
+        <state relative-caret-position="2546">
           <caret line="147" column="55" lean-forward="false" selection-start-line="147" selection-start-column="55" selection-end-line="147" selection-end-column="55" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/js/pieBarChart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#462#1217#0" expanded="false" />
+            <element signature="e#1235#1942#0" expanded="false" />
+            <element signature="e#1960#2642#0" expanded="false" />
+            <element signature="e#2660#3354#0" expanded="false" />
+            <element signature="e#3372#4070#0" expanded="false" />
+            <element signature="e#4088#4776#0" expanded="false" />
+            <element signature="e#8218#8282#0" expanded="false" />
+            <element signature="e#14933#14997#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/js/RadarChart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8398">
+          <caret line="442" column="23" lean-forward="true" selection-start-line="442" selection-start-column="23" selection-end-line="442" selection-end-column="23" />
+          <folding>
+            <element signature="e#9148#9505#0" expanded="false" />
+            <element signature="e#9538#18367#0" expanded="false" />
+            <element signature="e#25338#34334#0" expanded="false" />
+            <element signature="e#34355#43351#0" expanded="false" />
+            <element signature="e#43373#52380#0" expanded="false" />
+            <element signature="e#52401#59310#0" expanded="false" />
+            <element signature="e#59335#68356#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/js/d3.v3.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/css/pages/index.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16017">
+          <caret line="843" column="31" lean-forward="false" selection-start-line="843" selection-start-column="31" selection-end-line="843" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/css/pages/sentiment_word.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="5" column="24" lean-forward="true" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/js/Radarscript.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2603">
+          <caret line="153" column="51" lean-forward="false" selection-start-line="153" selection-start-column="36" selection-end-line="153" selection-end-column="51" />
+          <folding>
+            <element signature="e#2040#2472#0" expanded="false" />
+            <element signature="e#2492#2911#0" expanded="false" />
+            <element signature="e#2931#3365#0" expanded="false" />
+            <element signature="e#3385#3817#0" expanded="false" />
+            <element signature="e#3837#4256#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/js/Sentiment_word.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2546">
+          <caret line="147" column="55" lean-forward="false" selection-start-line="147" selection-start-column="55" selection-end-line="147" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2584">
+          <caret line="136" column="29" lean-forward="true" selection-start-line="136" selection-start-column="29" selection-end-line="136" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#1;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#2;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#div#2;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#svg#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#2;n#div#2;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#svg#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#2;n#div#2;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -355,9 +510,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resource/js/RadarChart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="442" column="23" lean-forward="true" selection-start-line="442" selection-start-column="23" selection-end-line="442" selection-end-column="23" />
+          <folding>
+            <element signature="e#9148#9505#0" expanded="false" />
+            <element signature="e#9538#18367#0" expanded="false" />
+            <element signature="e#25338#34334#0" expanded="false" />
+            <element signature="e#34355#43351#0" expanded="false" />
+            <element signature="e#43373#52380#0" expanded="false" />
+            <element signature="e#52401#59310#0" expanded="false" />
+            <element signature="e#59335#68356#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manifest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="31" lean-forward="false" selection-start-line="8" selection-start-column="31" selection-end-line="8" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/js/d3.v3.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/js/Sentiment_word.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2546">
+          <caret line="147" column="55" lean-forward="false" selection-start-line="147" selection-start-column="55" selection-end-line="147" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resource/js/Radarscript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
+        <state relative-caret-position="2603">
           <caret line="153" column="51" lean-forward="false" selection-start-line="153" selection-start-column="36" selection-end-line="153" selection-end-column="51" />
           <folding>
             <element signature="e#2040#2472#0" expanded="false" />
@@ -372,17 +566,16 @@
     <entry file="file://$PROJECT_DIR$/resource/css/pages/sentiment_word.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
-          <caret line="5" column="24" lean-forward="true" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resource/js/RadarChart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="442" column="23" lean-forward="true" selection-start-line="442" selection-start-column="23" selection-end-line="442" selection-end-column="23" />
+        <state relative-caret-position="1957">
+          <caret line="103" column="37" lean-forward="false" selection-start-line="103" selection-start-column="31" selection-end-line="103" selection-end-column="37" />
           <folding>
-            <element signature="e#66#9124#0" expanded="false" />
             <element signature="e#9148#9505#0" expanded="false" />
             <element signature="e#9538#18367#0" expanded="false" />
             <element signature="e#25338#34334#0" expanded="false" />
@@ -396,7 +589,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resource/css/pages/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
+        <state relative-caret-position="16017">
           <caret line="843" column="31" lean-forward="false" selection-start-line="843" selection-start-column="31" selection-end-line="843" selection-end-column="31" />
           <folding />
         </state>
@@ -404,8 +597,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="136" column="29" lean-forward="true" selection-start-line="136" selection-start-column="29" selection-end-line="136" selection-end-column="29" />
+        <state relative-caret-position="2584">
+          <caret line="136" column="29" lean-forward="false" selection-start-line="136" selection-start-column="29" selection-end-line="136" selection-end-column="29" />
           <folding>
             <element signature="n#style#0;n#img#0;n#div#1;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#table#0;n#div#1;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
@@ -413,6 +606,23 @@
             <element signature="n#style#0;n#table#0;n#div#2;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#svg#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#2;n#div#2;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#svg#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#2;n#div#2;n#div#1;n#div#0;n#section#0;n#section#0;n#div#0;n#body#0;n#HTML#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resource/js/pieBarChart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="389" column="12" lean-forward="false" selection-start-line="389" selection-start-column="12" selection-end-line="389" selection-end-column="12" />
+          <folding>
+            <element signature="e#462#1217#0" expanded="false" />
+            <element signature="e#1235#1942#0" expanded="false" />
+            <element signature="e#1960#2642#0" expanded="false" />
+            <element signature="e#2660#3354#0" expanded="false" />
+            <element signature="e#3372#4070#0" expanded="false" />
+            <element signature="e#4088#4776#0" expanded="false" />
+            <element signature="e#8218#8282#0" expanded="false" />
+            <element signature="e#14933#14997#0" expanded="false" />
           </folding>
         </state>
       </provider>

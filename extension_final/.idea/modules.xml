@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/extension_final.iml" filepath="$PROJECT_DIR$/.idea/extension_final.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/사다리_Extension_v2(final).iml" filepath="$PROJECT_DIR$/.idea/사다리_Extension_v2(final).iml" />
     </modules>
   </component>

@@ -203,83 +203,84 @@ function drawPie(names, datas, cluster_data) {
 
         // bar chart 색깔 별로 칠하기
         // 인덱스의 시작은 글의 구조 부터
-        
-		// 글의 구조 범위 0 ~ 4 / 23 ~ 31
-		if (i >= 23 || i < 5) {
-			var text_data = change_feature[features_count];
-			radar_render.append('rect')
-				.attr('x', 0)
-				.attr('y', 0)
-				.attr('width', rect_size * 7)
-				.attr('height', bar_area_width)
-				.attr('transform', 'translate(' + bar_x + ',' + bar_y + ') rotate(' + (degree + 5) + ')')
-				.attr('fill', '#cdfaf0')
-				// .attr('opacity', 0.5)
-				.attr('stroke', '#cccccc')
-				.on("mouseover", function(d) {
-					d3.select("#tooltip_left")
-						.style("left", 60 + "px")
-						.style("top", 5 + "px")
-						.select("#text_total_left")
-						.text(text_data);
-					d3.select("#tooltip_left").classed("hidden", false);
-				})
-				.on("mouseout", function() {
-					d3.select("#tooltip_left").classed("hidden", true);
-				})
-			features_count += 1;
-		}
+        (function () {
+            // 글의 구조 범위 0 ~ 4 / 23 ~ 31
+            if (i >= 23 || i < 5) {
+                var text_data = change_feature[features_count];
+                radar_render.append('rect')
+                    .attr('x', 0)
+                    .attr('y', 0)
+                    .attr('width', rect_size * 7)
+                    .attr('height', bar_area_width)
+                    .attr('transform', 'translate(' + bar_x + ',' + bar_y + ') rotate(' + (degree + 5) + ')')
+                    .attr('fill', '#cdfaf0')
+                    // .attr('opacity', 0.5)
+                    .attr('stroke', '#cccccc')
+                    .on("mouseover", function (d) {
+                        d3.select("#tooltip_left")
+                            .style("left", 60 + "px")
+                            .style("top", 5 + "px")
+                            .select("#text_total_left")
+                            .text(text_data);
+                        d3.select("#tooltip_left").classed("hidden", false);
+                    })
+                    .on("mouseout", function () {
+                        d3.select("#tooltip_left").classed("hidden", true);
+                    })
+                features_count += 1;
+            }
 
-		// 기타 범위 5 ~ 17
-		else if (i > 4 && i < 18) {
-			var text_data = change_feature[features_count];
-			radar_render.append('rect')
-				.attr('x', 0)
-				.attr('y', 0)
-				.attr('width', rect_size * 7)
-				.attr('height', bar_area_width)
-				.attr('transform', 'translate(' + bar_x + ',' + bar_y + ') rotate(' + (degree + 5) + ')')
-				.attr('fill', '#00e6b9')
-				// .attr('opacity', 0.5)
-				.attr('stroke', '#cccccc')
-				.on("mouseover", function(d) {
-					d3.select("#tooltip_left")
-						.style("left", 60 + "px")
-						.style("top", 5 + "px")
-						.select("#text_total_left")
-						.text(text_data);
-					d3.select("#tooltip_left").classed("hidden", false);
-				})
-				.on("mouseout", function() {
-					d3.select("#tooltip_left").classed("hidden", true);
-				})
-			features_count += 1;
-		}
-		// 글의 감정 범위 18 ~ 22
-		else if (i >= 18 && i < 23) {
-			var text_data = change_feature[features_count];
-			radar_render.append('rect')
-				.attr('x', 0)
-				.attr('y', 0)
-				.attr('width', rect_size * 7)
-				.attr('height', bar_area_width)
-				.attr('transform', 'translate(' + bar_x + ',' + bar_y + ') rotate(' + (degree + 5) + ')')
-				.attr('fill', '#000f3b')
-				// .attr('opacity', 0.5)
-				.attr('stroke', '#cccccc')
-				.on("mouseover", function(d) {
-					d3.select("#tooltip_left")
-						.style("left", 60 + "px")
-						.style("top", 5 + "px")
-						.select("#text_total_left")
-						.text(text_data);
-					d3.select("#tooltip_left").classed("hidden", false);
-				})
-				.on("mouseout", function() {
-					d3.select("#tooltip_left").classed("hidden", true);
-				})
-			features_count += 1;
-		}
+            // 기타 범위 5 ~ 17
+            else if (i > 4 && i < 18) {
+                var text_data = change_feature[features_count];
+                radar_render.append('rect')
+                    .attr('x', 0)
+                    .attr('y', 0)
+                    .attr('width', rect_size * 7)
+                    .attr('height', bar_area_width)
+                    .attr('transform', 'translate(' + bar_x + ',' + bar_y + ') rotate(' + (degree + 5) + ')')
+                    .attr('fill', '#00e6b9')
+                    // .attr('opacity', 0.5)
+                    .attr('stroke', '#cccccc')
+                    .on("mouseover", function (d) {
+                        d3.select("#tooltip_left")
+                            .style("left", 60 + "px")
+                            .style("top", 5 + "px")
+                            .select("#text_total_left")
+                            .text(text_data);
+                        d3.select("#tooltip_left").classed("hidden", false);
+                    })
+                    .on("mouseout", function () {
+                        d3.select("#tooltip_left").classed("hidden", true);
+                    })
+                features_count += 1;
+            }
+            // 글의 감정 범위 18 ~ 22
+            else if (i >= 18 && i < 23) {
+                var text_data = change_feature[features_count];
+                radar_render.append('rect')
+                    .attr('x', 0)
+                    .attr('y', 0)
+                    .attr('width', rect_size * 7)
+                    .attr('height', bar_area_width)
+                    .attr('transform', 'translate(' + bar_x + ',' + bar_y + ') rotate(' + (degree + 5) + ')')
+                    .attr('fill', '#000f3b')
+                    // .attr('opacity', 0.5)
+                    .attr('stroke', '#cccccc')
+                    .on("mouseover", function (d) {
+                        d3.select("#tooltip_left")
+                            .style("left", 60 + "px")
+                            .style("top", 5 + "px")
+                            .select("#text_total_left")
+                            .text(text_data);
+                        d3.select("#tooltip_left").classed("hidden", false);
+                    })
+                    .on("mouseout", function () {
+                        d3.select("#tooltip_left").classed("hidden", true);
+                    })
+                features_count += 1;
+            }
+        }) ();
     }
 }
 
