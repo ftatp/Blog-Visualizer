@@ -19,8 +19,8 @@ whale.tabs.onUpdated.addListener(function(tabid, changeinfo, tab) {
 function ajax_post(){
 	$.ajax({
 		type: "POST",
-		url: "http://127.0.0.1:8000/analysis/",
-		//url: "http://54.180.103.78:8000/analysis/",
+		//url: "http://127.0.0.1:8000/analysis/",
+		url: "http://54.180.103.78:8000/analysis/",
 		data: {
 			'url': url,
 			'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()

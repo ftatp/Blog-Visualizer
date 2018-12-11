@@ -214,8 +214,8 @@ $(function(){
 		if(feedback != "결과가 이상해요(선택)"){
 			$.ajax({
 				type: "POST",
-				url: "http://127.0.0.1:8000/feedback/",
-				//url: "http://54.180.103.78:8000/feedback/",
+				//url: "http://127.0.0.1:8000/feedback/",
+				url: "http://54.180.103.78:8000/feedback/",
 				data: {
 					'uid': uid,
 					'pid': pid,
