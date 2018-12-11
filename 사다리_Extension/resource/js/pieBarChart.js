@@ -1,4 +1,3 @@
-console.log("check pieBar");
 var g_radius = 0;
 var width = 230;
 var height = 277;

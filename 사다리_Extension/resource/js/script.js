@@ -167,7 +167,7 @@ function change_context(data){
 		cluster_type = "<p>A type</p>";
 	}
 	else if(data["post"].Predict["predict_cluster_class"] == 6){
-		details = "<p style='line-height:160%'>1. 오른쪽, 왼쪽, 가운데 등 <strong>글의 정렬에 신경</strong>을 많이 쓴 블로그 입니다. </p><p style='line-height:160%'>2. <strong>객관적</strong>으로 블로그를 작성한 것처럼 보입니다. </p><p style='line-height:160%'>3. 또한, 글 대비 <strong>사진 비율이 많이</strong> 사용되었습니다.</p>";
+		details = "<p style='line-height:160%'>1. 오른쪽, 왼쪽, 가운데 등 <strong>글의 정렬에 신경</strong>을 많이 쓴 블로그 집단 입니다. </p><p style='line-height:160%'>2. <strong>객관적</strong>으로 블로그를 작성한 것처럼 보입니다. </p><p style='line-height:160%'>3. 또한, 글 대비 <strong>사진 비율이 많이</strong> 사용되었습니다.</p>";
 		cluster_type = "<p>B type</p>";
 	}
 	else if(data["post"].Predict["predict_cluster_class"] == 2){//2
@@ -179,7 +179,7 @@ function change_context(data){
 		cluster_type = "<p>D type</p>";
 	}
 	else if(data["post"].Predict["predict_cluster_class"] == 0){
-		details = "<p style='line-height:200%'>1. <strong>물음표가 가장 많이 사용</strong>되었으며, 감정 단어 중 <strong>긍정 단어의 비율</strong>이 가장 높습니다.</p><p style='line-height=200%'>2. 동일 분야 내에서 <strong>장문</strong>으로 글이 작성되었으며, <strong>태그가 가장 많이 사용</strong>되었습니다.</p><p style='line-height:200%'>3. 글의 <strong>띄어쓰기 오류</strong>가 상대적으로 다른 블로그들에 비해 많이 발견됩니다.</p>";
+		details = "<p style='line-height:200%'>1. 다른 집단에 비해 <strong>물음표가 가장 많이 사용</strong>되었으며, <strong>긍정 단어의 사용 빈도</strong>가 높을 수 있습니다.</p><p style='line-height=200%'>2. 동일 분야 내에서 <strong>장문</strong>으로 글이 작성되었으며, <strong>태그가 가장 많이 사용</strong>되었습니다.</p><p style='line-height:200%'>3. 글의 <strong>띄어쓰기 오류</strong>가 상대적으로 다른 블로그들에 비해 많이 발견됩니다.</p>";
 		cluster_type = "<p>E type</p>";
 		}
 	else if(data["post"].Predict["predict_cluster_class"] == 1){

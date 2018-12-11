@@ -1,5 +1,3 @@
-console.log("check RadarChart");
-
 var draw_structure_radarChart = {
     draw: function(id, d, options){
         //console.log("check id: ", id)
