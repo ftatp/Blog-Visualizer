@@ -1,3 +1,6 @@
+uid = "";
+pid = "";
+
 whale.extension.onMessage.addListener(function(message, messageSender, sendResponse) {
     // message is the message you sent, probably an object
     // messageSender is an object that contains info about the context that sent the message
@@ -7,6 +10,9 @@ whale.extension.onMessage.addListener(function(message, messageSender, sendRespo
 		$('#loading').hide();
 		data = message['data'];
 		//console.log(data);
+		pid = data.pid;
+		uid = data.uid;
+		
 		change_context(data);
 
 		//Load sentiment word
@@ -39,7 +45,7 @@ whale.extension.onMessage.addListener(function(message, messageSender, sendRespo
 		var feature_nums = [13, 13, 5];
 
 	
-		post = data.post
+		post = data.post;
 		var post_list = [
 			post.Structure['img img img img img'],		
 			post.Structure['img img img img text'],
@@ -197,4 +203,34 @@ function change_context(data){
 
 }
 
+
+$(function(){
+	$('.pg-button').on('click', function(){
+		console.log("fqwafcwaf");
+		var select_ele = document.getElementsByClassName('pg-select-94')[0];
+		var feedback = select_ele.options[select_ele.selectedIndex].value;
+		console.log("Send" + feedback);
+
+		if(feedback != "결과가 이상해요(선택)"){
+			$.ajax({
+				type: "POST",
+				url: "http://127.0.0.1:8000/feedback/",
+				//url: "http://54.180.103.78:8000/feedback/",
+				data: {
+					'uid': uid,
+					'pid': pid,
+					'feedback': feedback,
+					'csrfmiddlewaretoken': $("input[name=csrfmiddlewaretoken]").val()
+				},
+				success: Success,
+				dataType: 'html'
+			});
+		}
+	});
+});
+
+function Success(data, textStatus, jgXHR){
+	console.log("asdf");
+	window.alert("Thank you for your feedback");
+}
 

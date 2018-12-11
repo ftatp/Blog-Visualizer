@@ -83,6 +83,8 @@ def index(request):
 		cluster_dict = data_csv.T.to_dict()
 		
 		data_dict = {
+			'uid': User_id,
+			'pid': Post_id,
 			'post': post_data,
 			'clusters': cluster_dict
 		}

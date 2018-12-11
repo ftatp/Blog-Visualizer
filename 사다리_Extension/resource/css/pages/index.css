@@ -353,7 +353,7 @@
   width:100px;
 }
 .cell-47 {
-  color:#969696;
+  color:a969696;
   height:30px;
   left:0px;
   line-height:30px;
@@ -858,6 +858,29 @@
   left:9px;
   top:11px;
   width:79px;
+}
+.pg-select-94 {
+ font-size:16px;
+ font-weight:500;
+ height:32px;
+ left:247px;
+ top:18px;
+ width:200px;
+ border-color:#B6B6B6;
+ border-width:1.3px;
+ border-radius:5px;
+ background-color:#FFFFFF;
+ color:#929292;
+}
+.pg-button {
+ background-color:#F0F0F0;
+ color:#000000;
+ font-size:14px;
+ font-weight:700;
+ height:32px;
+ left:452px;
+ top:18px;
+ width:85px;
 }
 .text-95 {
   color:#B6B6B6;
